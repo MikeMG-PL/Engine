@@ -158,7 +158,7 @@ void Game::initialize()
 
     float house_x = 0.0f;
     float house_z = 0.0f;
-    for (i32 i = 0; i < 40000; ++i)
+    for (int32_t i = 0; i < 400; ++i)
     {
         auto const house = CommonEntities::create_cube("House" + std::to_string(i), "./res/textures/container.png", "./res/textures/container_specular.png", cube_material);
         house->transform->set_parent(root->transform);

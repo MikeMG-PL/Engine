@@ -22,6 +22,11 @@ public:
     inline static bool enable_vsync = false;
     inline static bool enable_mouse_capture = true;
 
+    inline static int32_t screen_width = 1600;
+    inline static int32_t screen_height = 900;
+
+    inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
     inline static ma_engine audio_engine;
 
     inline static std::shared_ptr<Window> window;

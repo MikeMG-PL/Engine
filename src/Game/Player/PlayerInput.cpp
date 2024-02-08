@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Globals.h"
 #include "Input.h"
+#include "Renderer.h"
 
 void PlayerInput::awake()
 {
@@ -17,7 +18,7 @@ void PlayerInput::awake()
 
 void PlayerInput::update()
 {
-    if (Input::input->get_key_down(GLFW_KEY_T))
+    if (Input::input->get_key_down(GLFW_KEY_T) && game_mode)
     {
         m_terminator_mode = !m_terminator_mode;
         camera_entity->transform->set_local_position(glm::vec3(0.0f, 2.5f, 4.0f));
@@ -44,8 +45,27 @@ void PlayerInput::update()
     }
 }
 
-void PlayerInput::process_input() const
+void PlayerInput::switch_input()
 {
+    game_mode = !game_mode;
+
+	if(game_mode)
+        glfwSetInputMode(window->get_glfw_window(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    else
+        glfwSetInputMode(window->get_glfw_window(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+}
+
+void PlayerInput::process_input()
+{
+    if (Input::input->get_key_down(GLFW_KEY_SPACE))
+        switch_input();
+
+    if (Input::input->get_key_down(GLFW_KEY_ESCAPE))
+        glfwSetWindowShouldClose(window->get_glfw_window(), 1);
+
+    if(!game_mode)
+        return;
+
     float const current_speed = camera_speed * delta_time;
     if (Input::input->get_key(GLFW_KEY_W))
         camera_entity->transform->set_local_position(camera_entity->transform->get_local_position() += current_speed * m_camera->get_front());
@@ -59,14 +79,14 @@ void PlayerInput::process_input() const
     if (Input::input->get_key(GLFW_KEY_D))
         camera_entity->transform->set_local_position(camera_entity->transform->get_local_position() += glm::normalize(glm::cross(m_camera->get_front(), m_camera->get_up())) * current_speed);
 
-    if (Input::input->get_key(GLFW_KEY_Q))
+    if (Input::input->get_key(GLFW_KEY_E))
         camera_entity->transform->set_local_position(camera_entity->transform->get_local_position() += current_speed * glm::vec3(0.0f, 1.0f, 0.0f));
 
-    if (Input::input->get_key(GLFW_KEY_E))
+    if (Input::input->get_key(GLFW_KEY_Q))
         camera_entity->transform->set_local_position(camera_entity->transform->get_local_position() -= current_speed * glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
-void PlayerInput::process_terminator_input() const
+void PlayerInput::process_terminator_input()
 {
     float const current_speed = player_speed * delta_time;
     if (Input::input->get_key(GLFW_KEY_W))
@@ -92,7 +112,10 @@ void PlayerInput::process_terminator_input() const
 
 void PlayerInput::mouse_callback(double const x, double const y)
 {
-    if (m_mouse_just_entered)
+    if (!game_mode)
+        return;
+
+    if (mouse_just_entered)
     {
         m_last_mouse_position.x = x;
         m_last_mouse_position.y = y;
