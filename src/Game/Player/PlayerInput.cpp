@@ -18,22 +18,22 @@ void PlayerInput::awake()
 
 void PlayerInput::update()
 {
-    if (Input::input->get_key_down(GLFW_KEY_T) && game_mode)
-    {
-        m_terminator_mode = !m_terminator_mode;
-        camera_entity->transform->set_local_position(glm::vec3(0.0f, 2.5f, 4.0f));
-
-        if (m_terminator_mode)
-        {
-            camera_entity->transform->set_euler_angles(m_camera_euler_angles_terminator);
-            glfwSetInputMode(window->get_glfw_window(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-        }
-        else
-        {
-            m_camera_euler_angles_terminator = camera_entity->transform->get_euler_angles();
-            glfwSetInputMode(window->get_glfw_window(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-        }
-    }
+    // if (Input::input->get_key_down(GLFW_KEY_T) && game_mode)
+    // {
+    //     terminator_mode = !terminator_mode;
+    //     camera_entity->transform->set_local_position(glm::vec3(0.0f, 2.5f, 4.0f));
+    //
+    //     if (terminator_mode)
+    //     {
+    //         camera_entity->transform->set_euler_angles(camera_euler_angles_terminator);
+    //         glfwSetInputMode(window->get_glfw_window(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //     }
+    //     else
+    //     {
+    //         camera_euler_angles_terminator = camera_entity->transform->get_euler_angles();
+    //         glfwSetInputMode(window->get_glfw_window(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    //     }
+    // }
 
     if (!m_terminator_mode)
     {

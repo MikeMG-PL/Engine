@@ -45,39 +45,20 @@ void Game::initialize()
     player_input->player = player;
     player_input->window = window;
 
-    auto const player_model = Entity::create("PlayerModel");
-    player_model->transform->set_parent(player->transform);
-    player_model->transform->set_euler_angles(glm::vec3(0.0f, 180.0f, 0.0f));
-    player_model->transform->set_local_scale(glm::vec3(0.01f, 0.01f, 0.01f));
+    // auto const player_model = Entity::create("PlayerModel");
+    // player_model->transform->set_parent(player->transform);
+    // player_model->transform->set_euler_angles(glm::vec3(0.0f, 180.0f, 0.0f));
+    // player_model->transform->set_local_scale(glm::vec3(0.01f, 0.01f, 0.01f));
 
     auto const camera_parent = Entity::create("CameraParent");
     camera_parent->transform->set_parent(player->transform);
     m_camera->transform->set_parent(camera_parent->transform);
     player_input->camera_parent = camera_parent;
 
-    auto terminator_material = Material::create(standard_shader);
-    auto const player_body = Entity::create("Body");
-    player_body->transform->set_parent(player_model->transform);
-    player_body->add_component<Model>(Model::create("./res/models/terminator2/Terminator2.obj", terminator_material));
-
     auto const reflective_material = Material::create(reflective_shader);
     reflective_material->needs_skybox = true;
-    auto const left_hand = Entity::create("LeftHand");
-    left_hand->transform->set_parent(player_model->transform);
-    left_hand->add_component<Model>(Model::create("./res/models/terminator2/LeftHand.obj", reflective_material));
-
     auto const refractive_material = Material::create(refractive_shader);
     refractive_material->needs_skybox = true;
-    auto const right_hand = Entity::create("RightHand");
-    right_hand->transform->set_parent(player_model->transform);
-    right_hand->add_component<Model>(Model::create("./res/models/terminator2/RightHand.obj", refractive_material));
-
-    auto const head = Entity::create("Head");
-    head->transform->set_parent(player_model->transform);
-    head->transform->set_local_position(glm::vec3(0.0f, 185.0f, 0.0f));
-    head->add_component<Model>(Model::create("./res/models/terminator2/Head.obj", terminator_material));
-    player_input->player_head = head;
-    player_input->player_model = player_model;
 
     auto const reflective_cube = Entity::create("Reflective");
     reflective_cube->add_component<Cube>(Cube::create(reflective_material));
