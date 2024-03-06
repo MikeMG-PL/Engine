@@ -1,11 +1,12 @@
 #pragma once
 
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
+#include <glm/glm.hpp>
 
 struct Vertex
 {
     glm::vec3 position;
     glm::vec3 normal;
     glm::vec2 texture_coordinates;
+    glm::ivec4 skinIndices;
+    glm::vec4 skinWeights;
 };

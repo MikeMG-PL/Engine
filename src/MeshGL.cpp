@@ -67,6 +67,14 @@ MeshGL::MeshGL(AK::Badge<MeshFactory>, std::vector<Vertex> const& vertices, std:
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texture_coordinates));
 
+    // Vertex skin indices
+    glEnableVertexAttribArray(3);
+    glVertexAttribIPointer(3, 4, GL_INT, sizeof(Vertex), (void*)offsetof(Vertex, skinIndices));
+
+    // Vertex skin weights
+    glEnableVertexAttribArray(4);
+    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, skinWeights));
+
     if (draw_type == DrawType::Patches)
     {
         glPatchParameteri(GL_PATCH_VERTICES, 4); // FIXME: Hardcoded patch size

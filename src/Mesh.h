@@ -28,6 +28,7 @@ public:
     std::vector<Vertex> vertices;
     std::vector<u32> indices;
     std::vector<Texture> textures;
+    u32 skinningBuffer;
 
     BoundingBox bounds = {};
 

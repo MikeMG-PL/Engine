@@ -1,5 +1,6 @@
 #pragma once
 
+#include <imgui.h>
 #include <glad/glad.h> // Initialize with gladLoadGL()
 
 #include <GLFW/glfw3.h> // Include glfw3.h after our OpenGL definitions
@@ -22,8 +23,8 @@ public:
     inline static bool enable_vsync = false;
     inline static bool enable_mouse_capture = true;
 
-    inline static int32_t screen_width = 1600;
-    inline static int32_t screen_height = 900;
+    inline static i32 screen_width = 1600;
+    inline static i32 screen_height = 900;
 
     inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 

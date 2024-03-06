@@ -35,7 +35,7 @@ void PlayerInput::update()
     //     }
     // }
 
-    if (!m_terminator_mode)
+    if (!terminator_mode)
     {
         process_input();
     }
@@ -117,20 +117,20 @@ void PlayerInput::mouse_callback(double const x, double const y)
 
     if (mouse_just_entered)
     {
-        m_last_mouse_position.x = x;
-        m_last_mouse_position.y = y;
-        m_mouse_just_entered = false;
+        last_mouse_position.x = x;
+        last_mouse_position.y = y;
+        mouse_just_entered = false;
     }
 
-    double x_offset = x - m_last_mouse_position.x;
-    double y_offset = m_last_mouse_position.y - y;
-    m_last_mouse_position.x = x;
-    m_last_mouse_position.y = y;
+    double x_offset = x - last_mouse_position.x;
+    double y_offset = last_mouse_position.y - y;
+    last_mouse_position.x = x;
+    last_mouse_position.y = y;
 
     x_offset *= m_sensitivity;
     y_offset *= m_sensitivity;
 
-    if (m_terminator_mode)
+    if (terminator_mode)
     {
         float const current_rotation = player_head->transform->get_euler_angles().y + y_offset;
         float const new_rotation = std::clamp(current_rotation, -40.0f, 40.0f);
@@ -138,14 +138,14 @@ void PlayerInput::mouse_callback(double const x, double const y)
         return;
     }
 
-    m_yaw += x_offset;
-    m_pitch = glm::clamp(m_pitch + y_offset, -89.0, 89.0);
+    yaw += x_offset;
+    pitch = glm::clamp(pitch + y_offset, -89.0, 89.0);
 
-    camera_entity->transform->set_euler_angles(glm::vec3(m_pitch, -m_yaw, 0.0f));
+    camera_entity->transform->set_euler_angles(glm::vec3(pitch, -yaw, 0.0f));
 }
 
 void PlayerInput::focus_callback(i32 const focused)
 {
     if (focused == 0)
-        m_mouse_just_entered = true;
+        mouse_just_entered = true;
 }

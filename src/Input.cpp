@@ -10,15 +10,15 @@ void Input::set_input(std::shared_ptr<Input> const& input_system)
 
 Input::Input(std::shared_ptr<Window> const& window) : m_window(window)
 {
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_W, GLFW_KEY_W));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_S, GLFW_KEY_S));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_A, GLFW_KEY_A));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_D, GLFW_KEY_D));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_Q, GLFW_KEY_Q));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_E, GLFW_KEY_E));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_T, GLFW_KEY_T));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_SPACE, GLFW_KEY_SPACE));
-    keys.insert(std::pair<int32_t, Key>(GLFW_KEY_ESCAPE, GLFW_KEY_ESCAPE));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_W, GLFW_KEY_W));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_S, GLFW_KEY_S));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_A, GLFW_KEY_A));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_D, GLFW_KEY_D));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_Q, GLFW_KEY_Q));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_E, GLFW_KEY_E));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_T, GLFW_KEY_T));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_SPACE, GLFW_KEY_SPACE));
+    m_keys.insert(std::pair<int32_t, Key>(GLFW_KEY_ESCAPE, GLFW_KEY_ESCAPE));
 }
 
 bool Input::get_key(i32 const key) const
