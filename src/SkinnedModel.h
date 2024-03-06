@@ -40,6 +40,7 @@ public:
 
     virtual std::string get_name() const override;
 
+    void pre_draw_update(); // For skinning purposes
     virtual void draw() const override;
 
     virtual void draw_instanced(i32 const size) override;

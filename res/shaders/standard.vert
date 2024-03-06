@@ -56,7 +56,7 @@ void main()
         posSkinned.w=1.f;
     }
     
-    gl_Position=PVM*vec4(PositionInput,1.);
+    gl_Position=PVM*posSkinned; //vec4(PositionInput,1.);
     FragmentPosition=vec3(model*vec4(PositionInput,1.));
     
     // TODO: Do this on the CPU

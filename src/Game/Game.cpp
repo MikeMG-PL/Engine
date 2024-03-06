@@ -11,6 +11,7 @@
 #include "Model.h"
 #include "PointLight.h"
 #include "ShaderFactory.h"
+#include "SkinnedModel.h"
 #include "Sound.h"
 #include "SoundListener.h"
 #include "SpotLight.h"
@@ -130,6 +131,10 @@ void Game::initialize()
     auto const terrain = Entity::create("Terrain");
     terrain->transform->set_local_position(glm::vec3(0.0f, 11.0f, 0.0f));
     terrain->add_component<Terrain>(Terrain::create(terrain_material, true, "./res/textures/map/italy_height.png"));
+
+    auto const skinned_mesh_test = Entity::create("SkinnedModel");
+    skinned_mesh_test->transform->set_local_position(glm::vec3(0.0f, 5.0f, 5.0f));
+    skinned_mesh_test->add_component<SkinnedModel>(SkinnedModel::create("./res/models/skinning_test/man.gltf", "./res/models/skinning_test/anim.gltf", standard_material));
 
     //auto const floor = Entity::create("Floor");
     //floor->transform->set_parent(root->transform);

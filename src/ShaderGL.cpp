@@ -248,3 +248,18 @@ void ShaderGL::set_mat4(std::string const& name, glm::mat4 const value) const
 {
     glUniformMatrix4fv(glGetUniformLocation(program_id, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
+
+void ShaderGL::set_skinning_matrices(const glm::mat4& bones) const
+{
+    const GLint blockIndex = glGetUniformBlockIndex(program_id, "skinningBuffer");
+    glUniformBlockBinding(program_id, blockIndex, 0); // Assuming binding point is 0
+    GLuint ubo;
+    glGenBuffers(1, &ubo);
+    glBindBuffer(GL_UNIFORM_BUFFER, ubo);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(glm::mat4) * 512, &bones, GL_DYNAMIC_DRAW);
+    glBindBufferBase(GL_UNIFORM_BUFFER, 0, ubo);
+    glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+    // Set the entire array at once
+    glUniformMatrix4fv(glGetUniformLocation(program_id, "skin.bones"), 512, GL_FALSE, glm::value_ptr(bones[0]));
+}

@@ -12,6 +12,7 @@
 #include "Engine.h"
 #include "Entity.h"
 #include "ShaderFactory.h"
+#include "SkinnedModel.h"
 #include "Skybox.h"
 
 void Renderer::initialize()
@@ -166,6 +167,9 @@ void Renderer::draw(std::shared_ptr<Material> const& material, glm::mat4 const& 
 
         material->shader->set_mat4("PVM", projection_view * drawable->entity->transform->get_model_matrix());
         material->shader->set_mat4("model", drawable->entity->transform->get_model_matrix());
+
+        if (const auto skinned_model = std::dynamic_pointer_cast<SkinnedModel>(drawable))
+            skinned_model->pre_draw_update();
 
         drawable->draw();
     }

@@ -7,6 +7,8 @@
 
 #include <glad/glad.h>
 #include <map>
+#include <glm/gtx/matrix_decompose.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 #include "aiHelpers.h"
 #include "Entity.h"
@@ -16,6 +18,7 @@
 #include "TextureLoader.h"
 #include "Vertex.h"
 #include "AK/Types.h"
+#include "GLFW/glfw3.h"
 
 std::shared_ptr<SkinnedModel> SkinnedModel::create(std::string const& model_path, std::string const& anim_path, std::shared_ptr<Material> const& material)
 {
@@ -90,6 +93,52 @@ void SkinnedModel::draw() const
         mesh->draw();
 }
 
+void SkinnedModel::pre_draw_update()
+{
+    time = glfwGetTime();
+    glm::mat4 skinningMatrices[512] = { glm::mat4(1) };
+
+    for (auto const& mesh : m_meshes)
+    {
+        rig.LocalToModel(modelPose, localPose);
+
+        for (int j = 0; j < rig.numBones; j++)
+        {
+            xform inverseBindPoseXForm, skinnedXForm;
+            glm::vec3 scale;
+            glm::quat rotation;
+            glm::vec3 translation;
+            glm::vec3 skew;
+            glm::vec4 perspective;
+            glm::decompose(rig.inverseBindPose[j], scale, rotation, translation, skew, perspective);
+
+            inverseBindPoseXForm.position = translation;
+            inverseBindPoseXForm.rotation = rotation;
+
+            skinnedXForm = modelPose[j] * inverseBindPoseXForm;
+
+            glm::mat4 skinningMatrix = glm::mat4(1.0f);
+
+            skinningMatrix = glm::translate(skinningMatrix, skinnedXForm.position);
+            skinningMatrix = skinningMatrix * glm::toMat4(skinnedXForm.rotation);
+            skinningMatrix = glm::scale(skinningMatrix, glm::vec3(1.0f));
+
+            if (j == 4)
+            {
+                glm::mat4 rot = glm::mat4(1.0f);
+                rot = glm::rotate(rot, glm::sin(time), glm::vec3(0, 1, 0));
+                skinningMatrices[j] = glm::inverse(rig.inverseBindPose[j]) * rot * rig.inverseBindPose[j];
+            }
+            else
+                skinningMatrices[j] = glm::inverse(rig.inverseBindPose[j]) * rig.inverseBindPose[j];
+        }
+
+        // I FINISHED HERE: Maybe I should somehow load poses of T-pose bones at the veeery beginning?
+
+        m_material->shader->set_skinning_matrices(*skinningMatrices);			// TOGGLE THIS, skin?
+    }
+}
+
 void SkinnedModel::draw_instanced(i32 const size)
 {
     for (auto const& mesh : m_meshes)
@@ -125,7 +174,7 @@ void SkinnedModel::reprepare()
 void SkinnedModel::load_model(std::string const& path, LoadMode mode)
 {
     Assimp::Importer importer;
-    aiScene const* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_PopulateArmatureData);
+    scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_PopulateArmatureData);
 
     if ((!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) && mode == RIG)
     {
