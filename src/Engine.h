@@ -2,6 +2,8 @@
 
 #include <imgui.h>
 #include <glad/glad.h> // Initialize with gladLoadGL()
+#include <d3d11.h>
+#pragma comment(lib, "d3d11.lib")
 
 #include <GLFW/glfw3.h> // Include glfw3.h after our OpenGL definitions
 
@@ -32,7 +34,8 @@ public:
 
     inline static std::shared_ptr<Window> window;
 private:
-    static i32 initialize_thirdparty();
+    static i32 initialize_thirdparty_before_renderer();
+    static i32 initialize_thirdparty_after_renderer();
 
     static i32 setup_glfw();
     static std::shared_ptr<Window> create_window();
