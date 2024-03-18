@@ -90,6 +90,10 @@ void ShaderDX11::set_mat4(std::string const& name, glm::mat4 const value) const
 {
 }
 
+void ShaderDX11::set_skinning_matrices(const glm::mat4& bones) const
+{
+}
+
 i32 ShaderDX11::attach(char const* path, i32 type) const
 {
     return 0;
