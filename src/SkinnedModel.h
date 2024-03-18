@@ -28,11 +28,14 @@ public:
     static std::shared_ptr<SkinnedModel> create(std::string const& model_path, std::string const& anim_path, std::shared_ptr<Material> const& material);
     static std::shared_ptr<SkinnedModel> create(std::shared_ptr<Material> const& material);
 
+    // For convenience while the animation system is being developed
     Rig rig;
+
+    // For debugging so we can test skinning using sin(time)
     float time = 0;
 
-    std::vector<xform> modelPose;
-    std::vector<xform> localPose;
+    std::vector<xform> model_pose;
+    std::vector<xform> local_pose;
 
     SkinnedModel() = delete;
     explicit SkinnedModel(AK::Badge<SkinnedModel>, std::string const& model_path, std::string const& anim_path, std::shared_ptr<Material> const& material);
@@ -68,15 +71,10 @@ private:
     std::vector<Texture> load_material_textures(aiMaterial const* material, aiTextureType type, TextureType const type_name);
 
     // Skinning
-    void extractBoneData(aiNode* node, LoadMode mode);
-    void extractBoneDataFromMesh(aiMesh* mesh, LoadMode mode);
+    void extract_bone_data(aiNode* node, LoadMode mode);
+    void extract_bone_data_from_mesh(aiMesh* mesh, LoadMode mode);
 
-    std::vector<Texture> texturesLoaded;
-    std::vector<Mesh> meshes;
-    std::string directory;
-
-    const aiScene* scene;
-
+    const aiScene* m_scene;
     std::string m_directory;
     std::string m_model_path;
     std::string m_anim_path;

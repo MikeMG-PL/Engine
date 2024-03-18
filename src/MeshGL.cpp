@@ -69,11 +69,11 @@ MeshGL::MeshGL(AK::Badge<MeshFactory>, std::vector<Vertex> const& vertices, std:
 
     // Vertex skin indices
     glEnableVertexAttribArray(3);
-    glVertexAttribIPointer(3, 4, GL_INT, sizeof(Vertex), (void*)offsetof(Vertex, skinIndices));
+    glVertexAttribIPointer(3, 4, GL_INT, sizeof(Vertex), (void*)offsetof(Vertex, skin_indices));
 
     // Vertex skin weights
     glEnableVertexAttribArray(4);
-    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, skinWeights));
+    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, skin_weights));
 
     if (draw_type == DrawType::Patches)
     {

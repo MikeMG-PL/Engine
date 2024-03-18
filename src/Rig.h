@@ -4,16 +4,15 @@
 
 #include "AnimXForm.h"
 #include "HashedString.h"
+#include "AK/Types.h"
 
-class Rig
+struct Rig
 {
-public:
-
-	std::vector<hstring> boneNames;
-	std::vector<int> parents;
-	std::vector<glm::mat4> inverseBindPose;
-	glm::mat4 skinnedPose[512] = { glm::mat4(1.0f) };
-	unsigned int numBones = 0;
-	void LocalToModel(std::vector<xform>& modelPose, const std::vector<xform>& localPose);
-	void MultiplyInverseBindPoseByModelPose(const std::vector<xform>& modelPose);
+	std::vector<hstring> bone_names;
+	std::vector<i32> parents;
+	std::vector<glm::mat4> inverse_bind_pose;
+	glm::mat4 skinned_pose[512] = { glm::mat4(1.0f) };
+	u32 num_bones = 0;
+	void local_to_model(std::vector<xform>& model_pose, const std::vector<xform>& local_pose);
+	void multiply_inverse_bind_pose_by_model_pose(const std::vector<xform>& model_pose);
 };
