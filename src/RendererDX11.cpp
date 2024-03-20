@@ -35,6 +35,10 @@ void RendererDX11::end_frame() const
 {
     Renderer::end_frame();
 
+    std::cout << screen_width << " " << screen_height << "\n";
+    D3D11_VIEWPORT const viewport = { 0.0f, 0.0f, static_cast<float>(screen_width), static_cast<float>(screen_height), 0.0f, 1.0f };
+    g_pd3dDeviceContext->RSSetViewports(1, &viewport);
+
     const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };
     g_pd3dDeviceContext->OMSetRenderTargets(1, &g_mainRenderTargetView, nullptr);
     g_pd3dDeviceContext->ClearRenderTargetView(g_mainRenderTargetView, clear_color_with_alpha);

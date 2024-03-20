@@ -24,9 +24,11 @@ public:
     void virtual set_vec4(std::string const& name, glm::vec4 const value) const override;
     void virtual set_mat4(std::string const& name, glm::mat4 const value) const override;
 
+
 private:
     i32 virtual attach(char const* path, i32 type) const override;
 
+    ID3D11InputLayout* m_input_layout = nullptr;
     ID3D11VertexShader* m_vertex_shader = nullptr;
     ID3D11PixelShader* m_pixel_shader = nullptr;
 };
