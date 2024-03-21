@@ -24,12 +24,6 @@ public:
     void calculate_bounding_box();
     void adjust_bounding_box(glm::mat4 const& model_matrix);
     [[nodiscard]] BoundingBox get_adjusted_bounding_box(glm::mat4 const& model_matrix) const;
-
-    std::vector<Vertex> vertices;
-    std::vector<u32> indices;
-    std::vector<Texture> textures;
-    u32 skinningBuffer;
-
     BoundingBox bounds = {};
 
     std::shared_ptr<Material> material;
@@ -39,6 +33,11 @@ protected:
          DrawType const draw_type, std::shared_ptr<Material> const& material, DrawFunctionType const draw_function);
 
     [[nodiscard]] BoundingBox calculate_adjusted_bounding_box(glm::mat4 const& model_matrix) const;
+
+    std::vector<Vertex> m_vertices;
+    std::vector<u32> m_indices;
+    std::vector<Texture> m_textures;
+    u32 skinningBuffer;
 
     DrawType m_draw_type;
     DrawFunctionType m_draw_function;

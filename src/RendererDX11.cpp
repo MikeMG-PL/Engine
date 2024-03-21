@@ -30,11 +30,9 @@ RendererDX11::RendererDX11(AK::Badge<RendererDX11>)
 void RendererDX11::begin_frame() const
 {
     Renderer::begin_frame();
-}
 
-void RendererDX11::end_frame() const
-{
-    Renderer::end_frame();
+    D3D11_VIEWPORT const viewport = { 0.0f, 0.0f, static_cast<float>(screen_width), static_cast<float>(screen_height), 0.0f, 1.0f };
+    g_pd3dDeviceContext->RSSetViewports(1, &viewport);
 
     std::cout << screen_width << " " << screen_height << "\n";
     D3D11_VIEWPORT const viewport = { 0.0f, 0.0f, static_cast<float>(screen_width), static_cast<float>(screen_height), 0.0f, 1.0f };
@@ -45,11 +43,16 @@ void RendererDX11::end_frame() const
     g_pd3dDeviceContext->ClearRenderTargetView(g_mainRenderTargetView, clear_color_with_alpha);
 }
 
+void RendererDX11::end_frame() const
+{
+    Renderer::end_frame();
+}
+
 void RendererDX11::present() const
 {
     Renderer::present();
 
-    g_pSwapChain->Present(1, 0);
+    g_pSwapChain->Present(vsync_enabled, 0);
 }
 
 
@@ -137,8 +140,14 @@ void RendererDX11::cleanup_device_d3d()
 void RendererDX11::create_render_target()
 {
     ID3D11Texture2D* pBackBuffer;
-    g_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
-    g_pd3dDevice->CreateRenderTargetView(pBackBuffer, nullptr, &g_mainRenderTargetView);
+    HRESULT result = g_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
+
+    assert(SUCCEEDED(result));
+
+    result = g_pd3dDevice->CreateRenderTargetView(pBackBuffer, nullptr, &g_mainRenderTargetView);
+
+    assert(SUCCEEDED(result));
+
     pBackBuffer->Release();
 }
 
