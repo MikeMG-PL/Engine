@@ -30,8 +30,22 @@ std::shared_ptr<Model> Model::create(std::shared_ptr<Material> const& material)
     return model;
 }
 
+std::shared_ptr<Model> Model::create(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> const& material)
+{
+    auto model = std::make_shared<Model>(AK::Badge<Model> {}, mesh, material);
+
+    model->m_meshes.emplace_back(mesh);
+
+    return model;
+}
+
 Model::Model(AK::Badge<Model>, std::string const& model_path, std::shared_ptr<Material> const& material)
     : Drawable(material), m_model_path(model_path)
+{
+}
+
+Model::Model(AK::Badge<Model>, std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> const& material)
+    : Drawable(material)
 {
 }
 
@@ -228,9 +242,9 @@ std::vector<Texture> Model::load_material_textures(aiMaterial const* material, a
         TextureSettings settings = {};
         settings.flip_vertically = false;
 
-        Texture texture = TextureLoader::get_instance()->load_texture(file_path, type_name, settings);
+        /*Texture texture = TextureLoader::get_instance()->load_texture(file_path, type_name, settings);
         textures.push_back(texture);
-        m_loaded_textures.push_back(texture);
+        m_loaded_textures.push_back(texture);*/
     }
 
     return textures;

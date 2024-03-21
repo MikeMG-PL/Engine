@@ -9,6 +9,7 @@ std::shared_ptr<RendererDX11> RendererDX11::create()
     assert(m_instance == nullptr);
 
     set_instance(renderer);
+    set_instance_dx11(renderer);
 
     if (!renderer->create_device_d3d(Engine::window->get_win32_window()))
     {
@@ -33,6 +34,10 @@ void RendererDX11::begin_frame() const
 void RendererDX11::end_frame() const
 {
     Renderer::end_frame();
+
+    std::cout << screen_width << " " << screen_height << "\n";
+    D3D11_VIEWPORT const viewport = { 0.0f, 0.0f, static_cast<float>(screen_width), static_cast<float>(screen_height), 0.0f, 1.0f };
+    g_pd3dDeviceContext->RSSetViewports(1, &viewport);
 
     const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };
     g_pd3dDeviceContext->OMSetRenderTargets(1, &g_mainRenderTargetView, nullptr);
