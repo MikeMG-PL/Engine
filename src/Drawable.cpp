@@ -25,6 +25,11 @@ bool Drawable::is_particle() const
     return false;
 }
 
+bool Drawable::is_skinned_model() const
+{
+    return false;
+}
+
 void Drawable::set_glowing(bool const is_glowing)
 {
     m_is_glowing = is_glowing ? 1 : 0;

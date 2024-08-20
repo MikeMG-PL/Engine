@@ -12,6 +12,8 @@ struct VS_Input
     float3 pos: POSITION;
     float3 normal : NORMAL;
     float2 UV : TEXCOORD0;
+    int4 skin_indices : TEXCOORD1;
+    float4 skin_weights : TEXCOORD2;
 };
 
 struct VS_Output
@@ -19,7 +21,7 @@ struct VS_Output
     float4 pixel_pos : SV_POSITION;
     float3 normal : NORMAL;
     float3 world_pos : POSITION;
-    float2 UV : TEXCOORD;
+    float2 UV : TEXCOORD0;
 };
 
 Texture2D obj_texture : register(t0);

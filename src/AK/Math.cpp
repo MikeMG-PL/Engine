@@ -1,11 +1,18 @@
 #include "Math.h"
 
+#include "glm/fwd.hpp"
+#include "glm/gtc/quaternion.hpp"
 #include <corecrt_math_defines.h>
-#include <glm/ext/quaternion_geometric.hpp>
 #include <glm/gtc/epsilon.hpp>
 
 namespace AK
 {
+
+struct xform
+{
+    glm::vec3 pos = {0.0f, 0.0f, 0.0f};
+    glm::quat rot = {1.0f, 0.0f, 0.0f, 0.0f};
+};
 
 glm::vec2 Math::get_normal(glm::vec2 const& v)
 {

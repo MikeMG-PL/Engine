@@ -70,6 +70,7 @@
 #include "RendererDX11.h"
 #include "SceneSerializer.h"
 #include "ScreenText.h"
+#include "SkinnedModel.h"
 #include "Sound.h"
 #include "SoundListener.h"
 #include "Sphere.h"

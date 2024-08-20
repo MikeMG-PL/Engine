@@ -791,6 +791,28 @@ void RendererDX11::set_particle_buffer(std::shared_ptr<Drawable> const& drawable
     get_instance_dx11()->get_device_context()->PSSetConstantBuffers(4, 1, &m_constant_buffer_particle);
 }
 
+void RendererDX11::set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones)
+{
+    assert(drawable->is_skinned_model());
+
+    SkinningBuffer skinning_data = {};
+
+    for (u16 i = 0; i < SKINNING_BUFFER_SIZE; i++)
+    {
+        skinning_data.bones[i] = bones[i];
+    }
+
+    D3D11_MAPPED_SUBRESOURCE skinning_mapped_resource = {};
+    HRESULT const hr = get_instance_dx11()->get_device_context()->Map(m_constant_buffer_skinning, 0, D3D11_MAP_WRITE_DISCARD, 0,
+                                                                      &skinning_mapped_resource);
+    assert(SUCCEEDED(hr));
+
+    CopyMemory(skinning_mapped_resource.pData, &skinning_data, sizeof(SkinningBuffer));
+
+    get_instance_dx11()->get_device_context()->Unmap(m_constant_buffer_skinning, 0);
+    get_instance_dx11()->get_device_context()->VSSetConstantBuffers(4, 1, &m_constant_buffer_skinning);
+}
+
 void RendererDX11::set_camera_position_buffer(std::shared_ptr<Drawable> const& drawable) const
 {
     ConstantBufferCameraPosition camera_pos_data = {};

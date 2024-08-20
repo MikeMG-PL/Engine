@@ -43,6 +43,7 @@
     ENUMERATE_COMPONENT(Model, "Model")                                         \
     ENUMERATE_COMPONENT(Panel, "Panel")                                         \
     ENUMERATE_COMPONENT(ScreenText, "Screen Text")                              \
+    ENUMERATE_COMPONENT(SkinnedModel, "Skinned Model")                          \
     ENUMERATE_COMPONENT(Cube, "Cube")                                           \
     ENUMERATE_COMPONENT(Sphere, "Sphere")                                       \
     ENUMERATE_COMPONENT(Sprite, "Sprite")                                       \

@@ -58,6 +58,7 @@
 #include "PointLight.h"
 #include "ScreenText.h"
 #include "ShaderFactory.h"
+#include "SkinnedModel.h"
 #include "Sound.h"
 #include "SoundListener.h"
 #include "Sphere.h"
@@ -208,7 +209,14 @@ void SceneSerializer::auto_serialize_component(YAML::Emitter& out, std::shared_p
     {
         out << YAML::BeginMap;
         // # Put new Drawable kid here
-        if (auto const screentext = std::dynamic_pointer_cast<class ScreenText>(component); screentext != nullptr)
+        if (auto const skinnedmodel = std::dynamic_pointer_cast<class SkinnedModel>(component); skinnedmodel != nullptr)
+        {
+            out << YAML::Key << "ComponentName" << YAML::Value << "SkinnedModelComponent";
+            out << YAML::Key << "guid" << YAML::Value << skinnedmodel->guid;
+            out << YAML::Key << "custom_name" << YAML::Value << skinnedmodel->custom_name;
+            out << YAML::Key << "model_path" << YAML::Value << skinnedmodel->model_path;
+        }
+        else if (auto const screentext = std::dynamic_pointer_cast<class ScreenText>(component); screentext != nullptr)
         {
             out << YAML::Key << "ComponentName" << YAML::Value << "ScreenTextComponent";
             out << YAML::Key << "guid" << YAML::Value << screentext->guid;
@@ -1264,6 +1272,31 @@ void SceneSerializer::auto_deserialize_component(YAML::Node const& component, st
             if (component["button_ref"].IsDefined())
             {
                 deserialized_component->button_ref = component["button_ref"].as<std::weak_ptr<Button>>();
+            }
+            if (component["material"].IsDefined())
+            {
+                deserialized_component->material = component["material"].as<std::shared_ptr<Material>>();
+            }
+            deserialized_entity->add_component(deserialized_component);
+            deserialized_component->reprepare();
+        }
+    }
+    else if (component_name == "SkinnedModelComponent")
+    {
+        if (first_pass)
+        {
+            auto const deserialized_component = SkinnedModel::create();
+            deserialized_component->guid = component["guid"].as<std::string>();
+            deserialized_component->custom_name = component["custom_name"].as<std::string>();
+            deserialized_pool.emplace_back(deserialized_component);
+        }
+        else
+        {
+            auto const deserialized_component =
+                std::dynamic_pointer_cast<class SkinnedModel>(get_from_pool(component["guid"].as<std::string>()));
+            if (component["model_path"].IsDefined())
+            {
+                deserialized_component->model_path = component["model_path"].as<std::string>();
             }
             if (component["material"].IsDefined())
             {

@@ -26,6 +26,7 @@ public:
     virtual BoundingBox get_adjusted_bounding_box(glm::mat4 const& model_matrix) const;
 
     virtual bool is_particle() const;
+    virtual bool is_skinned_model() const;
 
     void set_glowing(bool const is_glowing);
     i32 is_glowing() const;
