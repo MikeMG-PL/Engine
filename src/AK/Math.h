@@ -5,9 +5,17 @@
 #include <glm/vec2.hpp>
 
 #include "Types.h"
+#include "glm/fwd.hpp"
+#include "glm/gtc/quaternion.hpp"
 
 namespace AK
 {
+
+struct xform
+{
+    glm::vec3 pos = {0.0f, 0.0f, 0.0f};
+    glm::quat rot = {1.0f, 0.0f, 0.0f, 0.0f};
+};
 
 class Math
 {

@@ -47,7 +47,7 @@ protected:
                                glm::mat4 const& projection_view_no_translation) const override;
     virtual void update_material(std::shared_ptr<Material> const& material) const override;
     virtual void update_object(std::shared_ptr<Drawable> const& drawable, std::shared_ptr<Material> const& material,
-                               glm::mat4 const& projection_view) const override;
+                               glm::mat4 const& projection_view, glm::mat4 const* bones) const override;
 
     virtual void unbind_material(std::shared_ptr<Material> const& material) const override;
     virtual void bind_universal_resources() const override;
@@ -60,7 +60,7 @@ private:
     [[nodiscard]] static D3D11_VIEWPORT create_viewport(i32 const width, i32 const height);
     void set_light_buffer() const;
     void set_particle_buffer(std::shared_ptr<Drawable> const& drawable, std::shared_ptr<Material> const& material) const;
-    void set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones);
+    void set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones) const;
     void set_camera_position_buffer(std::shared_ptr<Drawable> const& drawable) const;
 
     [[nodiscard]] bool create_device_d3d(HWND const hwnd);

@@ -585,7 +585,7 @@ void RendererDX11::update_material(std::shared_ptr<Material> const& material) co
 }
 
 void RendererDX11::update_object(std::shared_ptr<Drawable> const& drawable, std::shared_ptr<Material> const& material,
-                                 glm::mat4 const& projection_view) const
+                                 glm::mat4 const& projection_view, glm::mat4 const* bones) const
 {
     ConstantBufferPerObject data = {};
     glm::mat4 const model = drawable->entity->transform->get_model_matrix();
@@ -607,6 +607,11 @@ void RendererDX11::update_object(std::shared_ptr<Drawable> const& drawable, std:
     if (drawable->is_particle())
     {
         set_particle_buffer(drawable, material);
+    }
+
+    if (drawable->is_skinned_model())
+    {
+        set_skinning_buffer(drawable, bones);
     }
 
     set_light_buffer();
@@ -791,7 +796,7 @@ void RendererDX11::set_particle_buffer(std::shared_ptr<Drawable> const& drawable
     get_instance_dx11()->get_device_context()->PSSetConstantBuffers(4, 1, &m_constant_buffer_particle);
 }
 
-void RendererDX11::set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones)
+void RendererDX11::set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones) const
 {
     assert(drawable->is_skinned_model());
 

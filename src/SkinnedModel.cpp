@@ -1,5 +1,6 @@
 #include "SkinnedModel.h"
 
+#include "AK/Math.h"
 #include "AK/Types.h"
 #include "Entity.h"
 #include "Globals.h"
@@ -29,9 +30,10 @@ std::shared_ptr<SkinnedModel> SkinnedModel::create()
     return model;
 }
 
-std::shared_ptr<SkinnedModel> SkinnedModel::create(std::string const& model_path, std::shared_ptr<Material> const& material)
+std::shared_ptr<SkinnedModel> SkinnedModel::create(std::string const& model_path, std::string const& anim_path,
+                                                   std::shared_ptr<Material> const& material)
 {
-    auto model = std::make_shared<SkinnedModel>(AK::Badge<SkinnedModel> {}, model_path, material);
+    auto model = std::make_shared<SkinnedModel>(AK::Badge<SkinnedModel> {}, model_path, anim_path, material);
     model->prepare();
 
     return model;
@@ -53,8 +55,9 @@ std::shared_ptr<SkinnedModel> SkinnedModel::create(std::shared_ptr<Mesh> mesh, s
     return model;
 }
 
-SkinnedModel::SkinnedModel(AK::Badge<SkinnedModel>, std::string const& model_path, std::shared_ptr<Material> const& material)
-    : Drawable(material), model_path(model_path)
+SkinnedModel::SkinnedModel(AK::Badge<SkinnedModel>, std::string const& model_path, std::string const& anim_path,
+                           std::shared_ptr<Material> const& material)
+    : Drawable(material), model_path(model_path), anim_path(anim_path)
 {
 }
 
@@ -154,7 +157,7 @@ void SkinnedModel::prepare()
         material->first_drawable = std::dynamic_pointer_cast<Drawable>(shared_from_this());
     }
 
-    load_model(model_path);
+    load_model(model_path, anim_path);
 }
 
 void SkinnedModel::reset()
@@ -169,10 +172,10 @@ void SkinnedModel::reprepare()
     prepare();
 }
 
-void SkinnedModel::load_model(std::string const& path)
+void SkinnedModel::load_model(std::string const& path_to_model, std::string const& path_to_anim)
 {
     Assimp::Importer importer;
-    aiScene const* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_PopulateArmatureData);
+    aiScene const* scene = importer.ReadFile(path_to_model, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_PopulateArmatureData);
 
     if (scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
     {
@@ -180,7 +183,7 @@ void SkinnedModel::load_model(std::string const& path)
         return;
     }
 
-    std::filesystem::path const filesystem_path = path;
+    std::filesystem::path const filesystem_path = path_to_model; // FINISHED HERE
     m_directory = filesystem_path.parent_path().string();
 
     proccess_node(scene->mRootNode, scene);
@@ -205,6 +208,53 @@ std::shared_ptr<Mesh> SkinnedModel::proccess_mesh(aiMesh const* mesh, aiScene co
     std::vector<Vertex> vertices;
     std::vector<u32> indices;
     std::vector<std::shared_ptr<Texture>> textures;
+
+    // Populate rig data
+    if (mesh->mNumBones > 0)
+    {
+        // Set number of bones
+        m_rig.num_bones = mesh->mNumBones;
+
+        // Generating bone IDs
+        std::unordered_map<aiBone*, u32> bones_ids = {};
+        for (u32 i = 0; i < mesh->mNumBones; i++)
+        {
+            bones_ids[mesh->mBones[i]] = i;
+        }
+
+        for (aiBone const* bone : mesh->mBones)
+        {
+            // Fill with bone names
+            m_rig.bone_names.emplace_back(bone->mName.C_Str());
+
+            // Decompose bind pose (reference pose, T-pose) and assign it
+            aiQuaternion q = {1.0f, 0.0f, 0.0f, 0.0f};
+            aiVector3D v = {0.0f, 0.0f, 0.0f};
+            bone->mNode->mTransformation.DecomposeNoScaling(q, v);
+
+            AK::xform bone_xform = {};
+
+            bone_xform.pos = {v.x, v.y, v.z};
+            bone_xform.rot = {q.w, q.x, q.y, q.z};
+
+            m_rig.ref_pose.emplace_back(bone_xform);
+
+            // Parent test
+            for (unsigned int i = 0; i < mesh->mNumBones; i++)
+            {
+                // If currently checked i-th bone is the one processed in "for (aiBone const* bone : mesh->mBones)", find its ID and assign as bone's parent ID.
+                if (std::string(mesh->mBones[i]->mName.C_Str()) == std::string(bone->mNode->mParent->mName.C_Str()))
+                {
+                    u32 const id = bones_ids[mesh->mBones[i]];
+                    m_rig.parents.emplace_back(id);
+                    break;
+                }
+            }
+            // If no parent, it's root.
+            i32 const id = -1;
+            m_rig.parents.emplace_back(id);
+        }
+    }
 
     for (u32 i = 0; i < mesh->mNumVertices; ++i)
     {

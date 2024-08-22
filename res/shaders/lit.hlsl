@@ -7,6 +7,11 @@ cbuffer object_buffer : register(b0)
     float4x4 projection_view;
 };
 
+cbuffer skinning_buffer : register(b4)
+{
+    float4x4 bones[512];
+}
+
 struct VS_Input
 {
     float3 pos: POSITION;
@@ -31,10 +36,29 @@ VS_Output vs_main(VS_Input input)
 {
     VS_Output output;
 
-    output.world_pos = mul(model, float4(input.pos, 1.0f)).xyz;
+    const float4 pos = float4(input.pos, 1.0f);
+    const float4 norm = float4(input.normal, 0.0f);
+    float4 pos_skinned = {0.0f, 0.0f, 0.0f, 0.0f};
+    float4 norm_skinned = {0.0f, 0.0f, 0.0f, 0.0f};
+
+    for(int i = 0; i < 4; i++)
+    {
+        if(input.skin_indices[i] >= 0)
+        {
+            const float4x4 bone = bones[input.skin_indices[i]];
+            const float weight = input.skin_weights[i];
+
+            pos_skinned += mul(mul(bone, pos), weight);
+            norm_skinned += mul(mul(bone, norm), weight);
+        }
+    }
+
+    pos_skinned.w = 1.0f;
+
+    output.world_pos = mul(model, pos).xyz;
     output.UV = input.UV;
     output.normal = mul(input.normal, (float3x3)model);
-    output.pixel_pos = mul(projection_view_model, float4(input.pos, 1.0f));
+    output.pixel_pos = mul(projection_view_model, pos_skinned);
     return output;
 }
 

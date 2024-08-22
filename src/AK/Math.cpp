@@ -8,12 +8,6 @@
 namespace AK
 {
 
-struct xform
-{
-    glm::vec3 pos = {0.0f, 0.0f, 0.0f};
-    glm::quat rot = {1.0f, 0.0f, 0.0f, 0.0f};
-};
-
 glm::vec2 Math::get_normal(glm::vec2 const& v)
 {
     glm::vec2 const norm = {-v.y, v.x};
