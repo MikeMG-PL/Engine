@@ -1,0 +1,663 @@
+{
+	"asset":
+	{
+		"version": "2.0",
+		"generator": "Unreal Engine 5.3.1"
+	},
+	"scene": 0,
+	"accessors": [
+		{
+			"bufferView": 0,
+			"count": 66,
+			"type": "MAT4",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 1,
+			"count": 8814,
+			"type": "SCALAR",
+			"componentType": 5123
+		},
+		{
+			"bufferView": 2,
+			"count": 8182,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [ -0.971626401, -0.000644324231, -0.136671811 ],
+			"max": [ 0.971626341, 1.79884589, 0.189659268 ]
+		},
+		{
+			"bufferView": 3,
+			"count": 8182,
+			"type": "VEC3",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 4,
+			"count": 8182,
+			"type": "VEC4",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 5,
+			"count": 8182,
+			"type": "VEC2",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 6,
+			"count": 8182,
+			"type": "VEC2",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 7,
+			"count": 8182,
+			"type": "VEC4",
+			"componentType": 5121
+		},
+		{
+			"bufferView": 8,
+			"count": 8182,
+			"type": "VEC4",
+			"componentType": 5121,
+			"normalized": true
+		},
+		{
+			"bufferView": 9,
+			"count": 4344,
+			"type": "SCALAR",
+			"componentType": 5123
+		},
+		{
+			"bufferView": 10,
+			"count": 4344,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [ -0.769409001, 0.0867537633, -0.120000228 ],
+			"max": [ 0.769408941, 1.73902535, 0.0750552863 ]
+		},
+		{
+			"bufferView": 11,
+			"count": 4344,
+			"type": "VEC3",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 12,
+			"count": 4344,
+			"type": "VEC4",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 13,
+			"count": 4344,
+			"type": "VEC2",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 14,
+			"count": 4344,
+			"type": "VEC2",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 15,
+			"count": 4344,
+			"type": "VEC4",
+			"componentType": 5121
+		},
+		{
+			"bufferView": 16,
+			"count": 4344,
+			"type": "VEC4",
+			"componentType": 5121,
+			"normalized": true
+		}
+	],
+	"buffers": [
+		{
+			"uri": "enemy.bin",
+			"byteLength": 832204
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 4224
+		},
+		{
+			"buffer": 0,
+			"byteLength": 17628,
+			"byteOffset": 4224,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 98184,
+			"byteOffset": 21852,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 98184,
+			"byteOffset": 120036,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 130912,
+			"byteOffset": 218220,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 65456,
+			"byteOffset": 349132,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 65456,
+			"byteOffset": 414588,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 32728,
+			"byteOffset": 480044,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 32728,
+			"byteOffset": 512772,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 8688,
+			"byteOffset": 545500,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 52128,
+			"byteOffset": 554188,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 52128,
+			"byteOffset": 606316,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 69504,
+			"byteOffset": 658444,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 34752,
+			"byteOffset": 727948,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 34752,
+			"byteOffset": 762700,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 17376,
+			"byteOffset": 797452,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 17376,
+			"byteOffset": 814828,
+			"target": 34962
+		}
+	],
+	"materials": [
+		{
+			"name": "Alpha_Body_MAT",
+			"pbrMetallicRoughness":
+			{
+				"baseColorFactor": [ 0.0965700075, 0.421619803, 0.522000015, 1 ],
+				"metallicFactor": 0,
+				"roughnessFactor": 0.5
+			}
+		},
+		{
+			"name": "Alpha_Joints_MAT",
+			"pbrMetallicRoughness":
+			{
+				"baseColorFactor": [ 0.153551534, 0.212893873, 0.222217143, 1 ],
+				"metallicFactor": 0,
+				"roughnessFactor": 0.5
+			}
+		}
+	],
+	"meshes": [
+		{
+			"name": "enemyNew_07",
+			"primitives": [
+				{
+					"attributes":
+					{
+						"POSITION": 2,
+						"NORMAL": 3,
+						"TANGENT": 4,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6,
+						"JOINTS_0": 7,
+						"WEIGHTS_0": 8
+					},
+					"indices": 1,
+					"material": 0
+				},
+				{
+					"attributes":
+					{
+						"POSITION": 10,
+						"NORMAL": 11,
+						"TANGENT": 12,
+						"TEXCOORD_0": 13,
+						"TEXCOORD_1": 14,
+						"JOINTS_0": 15,
+						"WEIGHTS_0": 16
+					},
+					"indices": 9,
+					"material": 1
+				}
+			]
+		}
+	],
+	"nodes": [
+		{
+			"skin": 0,
+			"mesh": 0,
+			"children": [ 1 ]
+		},
+		{
+			"name": "root",
+			"rotation": [ 0.707106709, -0, -0, 0.707106829 ],
+			"children": [ 2 ]
+		},
+		{
+			"name": "Hips",
+			"translation": [ 0, -3.25841341e-07, -1 ],
+			"children": [ 3, 57, 62 ]
+		},
+		{
+			"name": "Spine",
+			"translation": [ -1.49256934e-07, -0.0122728841, -0.0971540436 ],
+			"rotation": [ 0.0607303679, -4.98584814e-05, -4.05727224e-06, -0.998154223 ],
+			"children": [ 4 ]
+		},
+		{
+			"name": "Spine1",
+			"translation": [ -9.20097852e-12, -8.36177172e-09, -0.11731974 ],
+			"rotation": [ -0.000196080684, 9.31606701e-06, -1.82542315e-09, -1 ],
+			"children": [ 5 ]
+		},
+		{
+			"name": "Spine2",
+			"translation": [ -1.22569984e-11, -6.81327661e-09, -0.134588182 ],
+			"rotation": [ -0.0577117093, -3.28499823e-06, 2.19581671e-06, -0.998333275 ],
+			"children": [ 6, 9, 33 ]
+		},
+		{
+			"name": "Neck",
+			"translation": [ 2.54772829e-07, 0.00877905264, -0.150277406 ],
+			"rotation": [ -0.00282773562, -7.7807337e-11, 1.77389735e-11, -0.999996006 ],
+			"children": [ 7 ]
+		},
+		{
+			"name": "Head",
+			"translation": [ 2.56635087e-08, 0.031424284, -0.10321863 ],
+			"children": [ 8 ]
+		},
+		{
+			"name": "End",
+			"translation": [ 1.92921016e-06, 0.0663639903, -0.184746847 ]
+		},
+		{
+			"name": "LeftShoulder",
+			"translation": [ 0.0610582419, 0.00757060573, -0.0910628811 ],
+			"rotation": [ 0.45383516, -0.551139235, -0.544849038, 0.439793974 ],
+			"children": [ 10 ]
+		},
+		{
+			"name": "LeftArm",
+			"translation": [ -1.15471703e-08, 2.43765168e-08, -0.12922287 ],
+			"rotation": [ 0.0104526924, -0.101150982, -0.00106235337, -0.994815707 ],
+			"children": [ 11 ]
+		},
+		{
+			"name": "LeftForeArm",
+			"translation": [ 2.30663446e-07, 8.81703155e-09, -0.274046808 ],
+			"children": [ 12 ]
+		},
+		{
+			"name": "LeftHand",
+			"translation": [ 9.92323166e-08, 1.95001384e-08, -0.276144475 ],
+			"children": [ 13, 17, 21, 25, 29 ]
+		},
+		{
+			"name": "LeftHandThumb1",
+			"translation": [ -0.0300297197, 0.0216715671, -0.0378883034 ],
+			"rotation": [ -0.251894057, -0.221923545, -0.059464734, -0.940086842 ],
+			"children": [ 14 ]
+		},
+		{
+			"name": "LeftHandThumb2",
+			"translation": [ -7.98218309e-08, 1.44322712e-07, -0.0474494286 ],
+			"children": [ 15 ]
+		},
+		{
+			"name": "LeftHandThumb3",
+			"translation": [ 3.109567e-08, -8.16011649e-08, -0.043821428 ],
+			"children": [ 16 ]
+		},
+		{
+			"name": "LeftHandThumb4",
+			"translation": [ -4.46193212e-07, 7.64782442e-07, -0.0345914774 ],
+			"rotation": [ -0.00915146898, -0.0720732361, 0.125638708, -0.989412248 ]
+		},
+		{
+			"name": "LeftHandIndex1",
+			"translation": [ -0.028220322, 0.00231826049, -0.122666337 ],
+			"rotation": [ 0.00107738608, -4.42915189e-06, -3.40041851e-07, -0.999999523 ],
+			"children": [ 18 ]
+		},
+		{
+			"name": "LeftHandIndex2",
+			"translation": [ -2.618044e-09, 8.38227206e-05, -0.0389195755 ],
+			"rotation": [ -0.00583070843, 6.14828832e-06, 1.50580917e-07, -0.999983013 ],
+			"children": [ 19 ]
+		},
+		{
+			"name": "LeftHandIndex3",
+			"translation": [ 2.68662842e-10, -0.000324607827, -0.0341500267 ],
+			"rotation": [ -0.000164081503, -2.44367215e-09, -4.75148454e-08, -1 ],
+			"children": [ 20 ]
+		},
+		{
+			"name": "LeftHandIndex4",
+			"translation": [ -6.75977844e-07, -0.000302036147, -0.0307787992 ],
+			"rotation": [ 0.00491977949, -3.45118042e-06, 0.00400167285, -0.999979913 ]
+		},
+		{
+			"name": "LeftHandMiddle1",
+			"translation": [ -5.68360186e-08, 9.68859126e-08, -0.127755329 ],
+			"children": [ 22 ]
+		},
+		{
+			"name": "LeftHandMiddle2",
+			"translation": [ 1.82249007e-08, -7.02857008e-08, -0.0361396261 ],
+			"children": [ 23 ]
+		},
+		{
+			"name": "LeftHandMiddle3",
+			"translation": [ 2.97255696e-07, -8.02436801e-08, -0.03459749 ],
+			"children": [ 24 ]
+		},
+		{
+			"name": "LeftHandMiddle4",
+			"translation": [ -9.84218445e-07, 6.31088312e-07, -0.0368025191 ],
+			"rotation": [ 4.92600975e-06, 0.000653956842, 0.00457915757, -0.999989331 ]
+		},
+		{
+			"name": "LeftHandRing1",
+			"translation": [ 0.0221664384, -9.9967132e-05, -0.121470191 ],
+			"rotation": [ 0.00111674005, -4.31103626e-06, -3.02694303e-07, -0.999999404 ],
+			"children": [ 26 ]
+		},
+		{
+			"name": "LeftHandRing2",
+			"translation": [ -1.56449087e-09, 8.03796938e-05, -0.0360117108 ],
+			"rotation": [ -0.00315412064, 7.8052035e-06, 1.6266215e-09, -0.999995053 ],
+			"children": [ 27 ]
+		},
+		{
+			"name": "LeftHandRing3",
+			"translation": [ 3.89277544e-09, -0.000134807007, -0.0330729745 ],
+			"rotation": [ 0.000186857244, 3.45402583e-07, -5.52522863e-08, -1 ],
+			"children": [ 28 ]
+		},
+		{
+			"name": "LeftHandRing4",
+			"translation": [ -9.40631764e-07, -0.000135097449, -0.0366013534 ],
+			"rotation": [ 0.00184419972, -0.000757643895, 0.00739795109, -0.999970675 ]
+		},
+		{
+			"name": "LeftHandPinky1",
+			"translation": [ 0.0472584106, 0.00226129941, -0.109082028 ],
+			"rotation": [ 3.86784377e-05, -0.000140661665, -1.07514104e-07, -1 ],
+			"children": [ 30 ]
+		},
+		{
+			"name": "LeftHandPinky2",
+			"translation": [ 1.49849277e-09, 3.40178099e-06, -0.0413665622 ],
+			"rotation": [ -5.85408561e-05, 0.000367933622, -1.86554871e-07, -0.99999994 ],
+			"children": [ 31 ]
+		},
+		{
+			"name": "LeftHandPinky3",
+			"translation": [ 2.26649366e-09, -1.26192856e-06, -0.0259482637 ],
+			"rotation": [ 0.00170590414, -0.000229885278, -3.46108408e-07, -0.99999851 ],
+			"children": [ 32 ]
+		},
+		{
+			"name": "LeftHandPinky4",
+			"translation": [ -6.4676226e-07, 9.89347391e-05, -0.0292387512 ],
+			"rotation": [ -0.00168398093, 0.000567954034, 0.004100841, -0.999990106 ]
+		},
+		{
+			"name": "RightShoulder",
+			"translation": [ -0.0610569604, 0.00757073145, -0.0910637528 ],
+			"rotation": [ -0.453837544, -0.55114013, -0.544847131, -0.439792722 ],
+			"children": [ 34 ]
+		},
+		{
+			"name": "RightArm",
+			"translation": [ 1.19209362e-08, 1.07894429e-07, -0.129222915 ],
+			"rotation": [ 0.0104559995, 0.10114947, 0.00106282625, -0.994815826 ],
+			"children": [ 35 ]
+		},
+		{
+			"name": "RightForeArm",
+			"translation": [ -2.68338383e-08, -2.13343e-07, -0.274046749 ],
+			"children": [ 36 ]
+		},
+		{
+			"name": "RightHand",
+			"translation": [ 1.24714163e-07, 3.85374719e-08, -0.276144683 ],
+			"children": [ 37, 41, 45, 49, 53 ]
+		},
+		{
+			"name": "RightHandThumb1",
+			"translation": [ 0.030029742, 0.0216714051, -0.0378881954 ],
+			"rotation": [ -0.251894712, 0.221923321, 0.059464816, -0.940086722 ],
+			"children": [ 38 ]
+		},
+		{
+			"name": "RightHandThumb2",
+			"translation": [ -9.89193794e-09, 2.35514847e-07, -0.0474497676 ],
+			"children": [ 39 ]
+		},
+		{
+			"name": "RightHandThumb3",
+			"translation": [ 9.38259745e-08, -1.64824286e-07, -0.0438210778 ],
+			"children": [ 40 ]
+		},
+		{
+			"name": "RightHandThumb4",
+			"translation": [ -3.23510051e-07, -5.78522986e-07, -0.0345902368 ],
+			"rotation": [ -0.00923170894, 0.0723272339, -0.127129868, -0.989202499 ]
+		},
+		{
+			"name": "RightHandIndex1",
+			"translation": [ 0.0282204151, 0.00231805374, -0.122666083 ],
+			"rotation": [ 0.000869025709, 4.62471826e-06, 1.3560954e-07, -0.999999642 ],
+			"children": [ 42 ]
+		},
+		{
+			"name": "RightHandIndex2",
+			"translation": [ 2.1536104e-09, 6.7493369e-05, -0.0389195234 ],
+			"children": [ 43 ]
+		},
+		{
+			"name": "RightHandIndex3",
+			"translation": [ -1.2702229e-07, 6.3581123e-05, -0.0341515839 ],
+			"rotation": [ -0.000924107153, -6.10434583e-08, -2.43454792e-07, -0.999999583 ],
+			"children": [ 44 ]
+		},
+		{
+			"name": "RightHandIndex4",
+			"translation": [ -8.00076407e-07, -7.18789806e-07, -0.0307797715 ],
+			"rotation": [ 7.45603829e-05, -0.00137675449, -0.00670923572, -0.999976635 ]
+		},
+		{
+			"name": "RightHandMiddle1",
+			"translation": [ 1.53557338e-07, -5.56210921e-07, -0.127755269 ],
+			"children": [ 46 ]
+		},
+		{
+			"name": "RightHandMiddle2",
+			"translation": [ -6.06899198e-09, 2.09539024e-07, -0.0361396931 ],
+			"children": [ 47 ]
+		},
+		{
+			"name": "RightHandMiddle3",
+			"translation": [ -2.83101315e-07, -4.47899318e-09, -0.034597449 ],
+			"children": [ 48 ]
+		},
+		{
+			"name": "RightHandMiddle4",
+			"translation": [ -4.10489918e-07, -6.05757862e-07, -0.0368019305 ],
+			"rotation": [ 5.51590347e-05, 0.00170795235, -0.00669496972, -0.999976218 ]
+		},
+		{
+			"name": "RightHandRing1",
+			"translation": [ -0.0221663248, -0.000100241952, -0.121470064 ],
+			"rotation": [ 0.00076450099, 4.77129697e-06, 2.7356171e-07, -0.999999702 ],
+			"children": [ 50 ]
+		},
+		{
+			"name": "RightHandRing2",
+			"translation": [ -2.20224496e-08, 5.53264326e-05, -0.0360117741 ],
+			"rotation": [ -0.00264908886, -8.3305813e-06, 1.79504287e-08, -0.999996483 ],
+			"children": [ 51 ]
+		},
+		{
+			"name": "RightHandRing3",
+			"translation": [ 2.08080326e-08, -0.000124849015, -0.0330728926 ],
+			"rotation": [ 0.000112400914, 3.04951612e-07, -2.11884952e-07, -1 ],
+			"children": [ 52 ]
+		},
+		{
+			"name": "RightHandRing4",
+			"translation": [ -4.42025225e-07, -0.000130273038, -0.036601156 ],
+			"rotation": [ 0.00183476054, 0.000286233466, -0.00761354063, -0.999969304 ]
+		},
+		{
+			"name": "RightHandPinky1",
+			"translation": [ -0.047258351, 0.00226103724, -0.109081991 ],
+			"rotation": [ 0.00121301482, 3.05066487e-06, 1.33271357e-07, -0.999999285 ],
+			"children": [ 54 ]
+		},
+		{
+			"name": "RightHandPinky2",
+			"translation": [ 3.87299348e-09, 0.000100541591, -0.0413663648 ],
+			"rotation": [ -0.00201225234, -1.06049656e-05, 3.70215957e-07, -0.999997973 ],
+			"children": [ 55 ]
+		},
+		{
+			"name": "RightHandPinky3",
+			"translation": [ 5.17489207e-09, -4.16873045e-05, -0.0259482861 ],
+			"rotation": [ 0.00217504567, 1.07549886e-05, -5.45034538e-07, -0.999997735 ],
+			"children": [ 56 ]
+		},
+		{
+			"name": "RightHandPinky4",
+			"translation": [ -6.62402385e-07, 8.01481074e-05, -0.0292382464 ],
+			"rotation": [ -0.0012891785, -0.00219484302, -0.00850160886, -0.999960721 ]
+		},
+		{
+			"name": "LeftUpLeg",
+			"translation": [ 0.0912445039, -0.000553270977, 0.0686445236 ],
+			"rotation": [ -1.86001325e-05, -0.999975324, -0.00635001855, 0.0030135524 ],
+			"children": [ 58 ]
+		},
+		{
+			"name": "LeftLeg",
+			"translation": [ -2.21975527e-09, -3.54720453e-09, -0.405994296 ],
+			"rotation": [ 0.0181143135, 0.00592016103, 0.000181492171, -0.999818385 ],
+			"children": [ 59 ]
+		},
+		{
+			"name": "LeftFoot",
+			"translation": [ -1.99577883e-08, -3.69575037e-09, -0.42099002 ],
+			"rotation": [ -0.540550113, -0.0249508005, 0.0143668819, -0.840819001 ],
+			"children": [ 60 ]
+		},
+		{
+			"name": "LeftToeBase",
+			"translation": [ 1.12963139e-09, -4.0970729e-08, -0.157215551 ],
+			"rotation": [ -0.227691457, 0.015365636, -0.0325214826, -0.973068893 ],
+			"children": [ 61 ]
+		},
+		{
+			"name": "End_001",
+			"translation": [ 6.96255768e-07, -6.75049989e-08, -0.100000091 ]
+		},
+		{
+			"name": "RightUpLeg",
+			"translation": [ -0.0912445337, -0.000553276215, 0.0686446503 ],
+			"rotation": [ 1.96086967e-05, -0.999975502, -0.00633364869, -0.00301353564 ],
+			"children": [ 63 ]
+		},
+		{
+			"name": "RightLeg",
+			"translation": [ 9.25041732e-09, -1.66760172e-09, -0.405994266 ],
+			"rotation": [ 0.0181470849, -0.00592012471, -0.000182761723, -0.999817789 ],
+			"children": [ 64 ]
+		},
+		{
+			"name": "RightFoot",
+			"translation": [ -1.78394686e-08, -1.6326438e-09, -0.420990139 ],
+			"rotation": [ -0.540563703, 0.0249510128, -0.0143662207, -0.840810299 ],
+			"children": [ 65 ]
+		},
+		{
+			"name": "RightToeBase",
+			"translation": [ 2.58412864e-08, 2.26956942e-08, -0.157215521 ],
+			"rotation": [ -0.227708578, -0.0152576296, 0.0321184099, -0.97307986 ],
+			"children": [ 66 ]
+		},
+		{
+			"name": "End_002",
+			"translation": [ 6.91055732e-07, 2.81191959e-09, -0.0999999866 ]
+		}
+	],
+	"scenes": [
+		{
+			"nodes": [ 0 ]
+		}
+	],
+	"skins": [
+		{
+			"name": "enemyNew_07",
+			"inverseBindMatrices": 0,
+			"skeleton": 0,
+			"joints": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66 ]
+		}
+	]
+}
