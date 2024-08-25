@@ -1,13 +1,8 @@
 #pragma once
-#include "AK/Types.h"
+#include "AK/Math.h"
 
 #include <string>
 #include <vector>
-
-namespace AK
-{
-struct xform;
-}
 
 struct Rig
 {

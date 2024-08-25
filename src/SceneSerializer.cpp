@@ -215,6 +215,7 @@ void SceneSerializer::auto_serialize_component(YAML::Emitter& out, std::shared_p
             out << YAML::Key << "guid" << YAML::Value << skinnedmodel->guid;
             out << YAML::Key << "custom_name" << YAML::Value << skinnedmodel->custom_name;
             out << YAML::Key << "model_path" << YAML::Value << skinnedmodel->model_path;
+            out << YAML::Key << "anim_path" << YAML::Value << skinnedmodel->anim_path;
         }
         else if (auto const screentext = std::dynamic_pointer_cast<class ScreenText>(component); screentext != nullptr)
         {
@@ -1297,6 +1298,10 @@ void SceneSerializer::auto_deserialize_component(YAML::Node const& component, st
             if (component["model_path"].IsDefined())
             {
                 deserialized_component->model_path = component["model_path"].as<std::string>();
+            }
+            if (component["anim_path"].IsDefined())
+            {
+                deserialized_component->anim_path = component["anim_path"].as<std::string>();
             }
             if (component["material"].IsDefined())
             {

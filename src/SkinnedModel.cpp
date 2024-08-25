@@ -209,52 +209,8 @@ std::shared_ptr<Mesh> SkinnedModel::proccess_mesh(aiMesh const* mesh, aiScene co
     std::vector<u32> indices;
     std::vector<std::shared_ptr<Texture>> textures;
 
-    // Populate rig data
     if (mesh->mNumBones > 0)
-    {
-        // Set number of bones
-        m_rig.num_bones = mesh->mNumBones;
-
-        // Generating bone IDs
-        std::unordered_map<aiBone*, u32> bones_ids = {};
-        for (u32 i = 0; i < mesh->mNumBones; i++)
-        {
-            bones_ids[mesh->mBones[i]] = i;
-        }
-
-        for (aiBone const* bone : mesh->mBones)
-        {
-            // Fill with bone names
-            m_rig.bone_names.emplace_back(bone->mName.C_Str());
-
-            // Decompose bind pose (reference pose, T-pose) and assign it
-            aiQuaternion q = {1.0f, 0.0f, 0.0f, 0.0f};
-            aiVector3D v = {0.0f, 0.0f, 0.0f};
-            bone->mNode->mTransformation.DecomposeNoScaling(q, v);
-
-            AK::xform bone_xform = {};
-
-            bone_xform.pos = {v.x, v.y, v.z};
-            bone_xform.rot = {q.w, q.x, q.y, q.z};
-
-            m_rig.ref_pose.emplace_back(bone_xform);
-
-            // Parent test
-            for (unsigned int i = 0; i < mesh->mNumBones; i++)
-            {
-                // If currently checked i-th bone is the one processed in "for (aiBone const* bone : mesh->mBones)", find its ID and assign as bone's parent ID.
-                if (std::string(mesh->mBones[i]->mName.C_Str()) == std::string(bone->mNode->mParent->mName.C_Str()))
-                {
-                    u32 const id = bones_ids[mesh->mBones[i]];
-                    m_rig.parents.emplace_back(id);
-                    break;
-                }
-            }
-            // If no parent, it's root.
-            i32 const id = -1;
-            m_rig.parents.emplace_back(id);
-        }
-    }
+        populate_rig_data(mesh);
 
     for (u32 i = 0; i < mesh->mNumVertices; ++i)
     {
@@ -276,8 +232,13 @@ std::shared_ptr<Mesh> SkinnedModel::proccess_mesh(aiMesh const* mesh, aiScene co
             vertex.texture_coordinates = glm::vec2(0.0f, 0.0f);
         }
 
+        for (u32 b = 0; b < mesh->mNumBones; b++)
+            assign_weights_and_indices(*mesh->mBones[b], vertex, i);
+
         vertices.push_back(vertex);
     }
+
+    // Filling vertices with weights and indices
 
     for (u32 i = 0; i < mesh->mNumFaces; ++i)
     {
@@ -341,4 +302,79 @@ std::vector<std::shared_ptr<Texture>> SkinnedModel::load_material_textures(aiMat
     }
 
     return textures;
+}
+
+void SkinnedModel::populate_rig_data(aiMesh const* mesh)
+{
+    // Set number of bones
+    m_rig.num_bones = mesh->mNumBones;
+
+    // Generating bone IDs
+    // std::unordered_map<aiBone*, u32> bones_ids = {};
+    for (u32 i = 0; i < mesh->mNumBones; i++)
+    {
+        // bones_ids[mesh->mBones[i]] = i;
+        bone_names_to_ids[mesh->mBones[i]->mName.C_Str()] = static_cast<i32>(i);
+    }
+
+    // for (aiBone const* bone : mesh->mBones)
+    for (u32 i = 0; i < mesh->mNumBones; i++)
+    {
+        auto const bone = mesh->mBones[i];
+
+        // Fill with bone names
+        m_rig.bone_names.emplace_back(bone->mName.C_Str());
+
+        // Decompose bind pose (reference pose, T-pose) and assign it
+        aiQuaternion q = {1.0f, 0.0f, 0.0f, 0.0f};
+        aiVector3D v = {0.0f, 0.0f, 0.0f};
+        bone->mNode->mTransformation.DecomposeNoScaling(q, v);
+
+        AK::xform bone_xform = {};
+
+        bone_xform.pos = {v.x, v.y, v.z};
+        bone_xform.rot = {q.w, q.x, q.y, q.z};
+
+        m_rig.ref_pose.emplace_back(bone_xform);
+
+        // Parent test
+        for (unsigned int j = 0; j < mesh->mNumBones; j++)
+        {
+            // If currently checked j-th bone is the one processed in "for (aiBone const* bone : mesh->mBones)", find its ID and assign as bone's parent ID.
+            if (std::string(mesh->mBones[j]->mName.C_Str()) == std::string(bone->mNode->mParent->mName.C_Str()))
+            {
+                // u32 const id = bones_ids[mesh->mBones[j]];
+                i32 const id = bone_names_to_ids[mesh->mBones[j]->mName.C_Str()];
+                m_rig.parents.emplace_back(id);
+                break;
+            }
+        }
+        // If no parent, it's root.
+        i32 const id = -1;
+        m_rig.parents.emplace_back(id);
+    }
+}
+
+void SkinnedModel::assign_weights_and_indices(aiBone const& bone, Vertex& vertex, u32 const processed_index)
+{
+    for (u32 i = 0; i < bone.mNumWeights; i++)
+    {
+        auto const weight_and_id = bone.mWeights[i];
+
+        u32 const vertex_id = weight_and_id.mVertexId;
+
+        if (vertex_id != processed_index)
+            continue;
+
+        float const vertex_weight = weight_and_id.mWeight;
+
+        for (u8 j = 0; j < 4; j++)
+        {
+            if (vertex.skin_indices[j] == -1)
+            {
+                vertex.skin_indices[j] = bone_names_to_ids[bone.mName.C_Str()];
+                vertex.skin_weights[j] = vertex_weight;
+            }
+        }
+    }
 }

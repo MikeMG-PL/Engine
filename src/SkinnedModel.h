@@ -9,6 +9,9 @@
 #include "Rig.h"
 #include "Texture.h"
 
+#include <unordered_map>
+
+struct aiBone;
 struct aiMaterial;
 struct aiMesh;
 struct aiScene;
@@ -45,8 +48,8 @@ public:
 
     virtual bool is_skinned_model() const override;
 
-    std::string model_path = "";
-    std::string anim_path = "";
+    std::string model_path = "./res/models/enemy/enemy.gltf";
+    std::string anim_path = "./res/models/enemy/enemy.gltf";
 
 protected:
     explicit SkinnedModel(std::shared_ptr<Material> const& material);
@@ -61,7 +64,12 @@ private:
     std::vector<std::shared_ptr<Texture>> load_material_textures(aiMaterial const* material, aiTextureType type,
                                                                  TextureType const type_name);
 
+    void populate_rig_data(aiMesh const* mesh);
+    void assign_weights_and_indices(aiBone const& bone, Vertex& vertex, u32 const processed_index);
+
     Rig m_rig = {};
-    std::string m_directory;
-    std::vector<std::shared_ptr<Texture>> m_loaded_textures;
+    std::unordered_map<std::string, i32> bone_names_to_ids = {};
+
+    std::string m_directory = "";
+    std::vector<std::shared_ptr<Texture>> m_loaded_textures = {};
 };
