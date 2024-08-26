@@ -4,7 +4,7 @@ Entities:
     guid: 045c29ad4d962ca401160a399e9b06ac6ca92dc7c95ed1705c36688546211bfb
     Name: NOT_SKINNED_model
     TransformComponent:
-      Translation: [-2, 0, 0]
+      Translation: [-3, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
       Parent:

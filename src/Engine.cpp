@@ -82,6 +82,7 @@ void Engine::create_game()
     MainScene::set_instance(main_scene);
 
     asset_preloader->preload_text_asset("./res/scenes/MainScene.txt");
+    asset_preloader->preload_text_asset("./res/scenes/scene.txt");
     asset_preloader->preload_text_asset("./res/prefabs/Level_0.txt");
     asset_preloader->preload_text_asset("./res/prefabs/Level_1.txt");
     asset_preloader->preload_text_asset("./res/prefabs/Level_2.txt");
@@ -121,7 +122,7 @@ void Engine::create_game()
     auto const scene_serializer = std::make_shared<SceneSerializer>(main_scene);
     scene_serializer->set_instance(scene_serializer);
 
-    std::string const scene = "./res/scenes/MainScene.txt";
+    std::string const scene = "./res/scenes/scene.txt";
     if (!scene_serializer->deserialize(scene))
     {
         std::cout << "Scene could not be loaded.\n";
