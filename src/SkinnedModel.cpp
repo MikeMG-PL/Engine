@@ -7,6 +7,7 @@
 #include "Mesh.h"
 #include "MeshFactory.h"
 #include "Renderer.h"
+#include "RendererDX11.h"
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "Vertex.h"
@@ -134,6 +135,8 @@ void SkinnedModel::draw() const
 
     // Either wireframe or solid for individual model
     Renderer::get_instance()->set_rasterizer_draw_type(m_rasterizer_draw_type);
+
+    RendererDX11::get_instance_dx11()->set_skinning_buffer(skinning_matrices.data());
 
     for (auto const& mesh : m_meshes)
         mesh->draw();
@@ -352,6 +355,20 @@ void SkinnedModel::populate_rig_data(aiMesh const* mesh)
         // If no parent, it's root.
         i32 const id = -1;
         m_rig.parents.emplace_back(id);
+
+        // FOR DEBUGGING:
+        local_pose.emplace_back(bone_xform);
+    }
+
+    // Fill model_pose with local_pose matrices to prevent from being empty
+    model_pose = local_pose;
+
+    // Local Space --> Model Space
+    m_rig.local_to_model(local_pose, model_pose);
+
+    for (u32 i = 0; i < m_rig.num_bones; i++)
+    {
+        skinning_matrices.emplace_back(AK::Math::xform_to_mat4(model_pose[i]));
     }
 }
 

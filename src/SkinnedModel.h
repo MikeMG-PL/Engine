@@ -70,6 +70,11 @@ private:
     Rig m_rig = {};
     std::unordered_map<std::string, i32> bone_names_to_ids = {};
 
+    std::vector<AK::xform> local_pose = {};
+    std::vector<AK::xform> model_pose = {};
+
+    std::vector<glm::mat4> skinning_matrices = {};
+
     std::string m_directory = "";
     std::vector<std::shared_ptr<Texture>> m_loaded_textures = {};
 };

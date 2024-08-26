@@ -32,6 +32,9 @@ public:
     static float ease_in_out_elastic(float const x);
     static float ease_out_quart(float const x);
 
+    static xform mul_xforms(xform const& a, xform const& b);
+    static glm::mat4 xform_to_mat4(xform const& m);
+
     // Applies only for axis-aligned rectangles. Used mostly for buttons. Collider2D handles OBB in different way.
     static bool is_point_inside_rectangle(glm::vec2 const& point, std::array<glm::vec2, 4> const& rectangle_corners);
 

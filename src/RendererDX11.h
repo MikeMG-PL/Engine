@@ -41,6 +41,7 @@ public:
 
     virtual void set_rasterizer_draw_type(RasterizerDrawType const rasterizer_draw_type) override;
     virtual void restore_default_rasterizer_draw_type() override;
+    void set_skinning_buffer(glm::mat4 const* bones) const;
 
 protected:
     virtual void update_shader(std::shared_ptr<Shader> const& shader, glm::mat4 const& projection_view,
@@ -60,7 +61,6 @@ private:
     [[nodiscard]] static D3D11_VIEWPORT create_viewport(i32 const width, i32 const height);
     void set_light_buffer() const;
     void set_particle_buffer(std::shared_ptr<Drawable> const& drawable, std::shared_ptr<Material> const& material) const;
-    void set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones) const;
     void set_camera_position_buffer(std::shared_ptr<Drawable> const& drawable) const;
 
     [[nodiscard]] bool create_device_d3d(HWND const hwnd);

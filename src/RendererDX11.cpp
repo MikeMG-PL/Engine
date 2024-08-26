@@ -609,10 +609,10 @@ void RendererDX11::update_object(std::shared_ptr<Drawable> const& drawable, std:
         set_particle_buffer(drawable, material);
     }
 
-    if (drawable->is_skinned_model())
-    {
-        set_skinning_buffer(drawable, bones);
-    }
+    // if (drawable->is_skinned_model())
+    // {
+    //     set_skinning_buffer(drawable, bones);
+    // }
 
     set_light_buffer();
     set_camera_position_buffer(drawable);
@@ -796,8 +796,11 @@ void RendererDX11::set_particle_buffer(std::shared_ptr<Drawable> const& drawable
     get_instance_dx11()->get_device_context()->PSSetConstantBuffers(4, 1, &m_constant_buffer_particle);
 }
 
-void RendererDX11::set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones) const
+void RendererDX11::set_skinning_buffer(glm::mat4 const* bones) const
 {
+    if (bones == nullptr)
+        return;
+
     assert(drawable->is_skinned_model());
 
     SkinningBuffer skinning_data = {};

@@ -2,6 +2,8 @@
 
 #include "glm/fwd.hpp"
 #include "glm/gtc/quaternion.hpp"
+#include "glm/gtx/quaternion.hpp"
+
 #include <corecrt_math_defines.h>
 #include <glm/gtc/epsilon.hpp>
 
@@ -102,6 +104,36 @@ bool Math::are_nearly_equal(float const x, float const y, float const epsilon)
 float Math::ease_out_quart(float const x)
 {
     return 1.0f - pow(1.0f - x, 4.0f);
+}
+
+xform Math::mul_xforms(xform const& a, xform const& b)
+{
+    xform result = {};
+
+    // Combine the rotations: b's rotation is applied first, then a's rotation
+    result.rot = a.rot * b.rot;
+
+    // Combine the positions: b's position is rotated by a's rotation, then a's position is added
+    result.pos = a.rot * b.pos + a.pos;
+
+    return result;
+}
+
+glm::mat4 Math::xform_to_mat4(xform const& m)
+{
+    // Create a 4x4 identity matrix
+    auto result = glm::mat4(1.0f);
+
+    // Convert quaternion rotation to a 3x3 rotation matrix and place it in the upper-left corner
+    glm::mat4 const rotationMatrix = glm::toMat4(m.rot);
+
+    // Set the rotation part of the matrix
+    result *= rotationMatrix;
+
+    // Set the translation part of the matrix (last column)
+    result[3] = glm::vec4(m.pos, 1.0f);
+
+    return result;
 }
 
 float Math::ease_in_out_elastic(float const x)
