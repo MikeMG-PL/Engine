@@ -1,398 +1,54 @@
 Scene: Untitled
 Entities:
-  - Entity: Game Controller
-    guid: 83139da87b5b366493870e126a611f3edc8afda278571a1afa702a506731e35e
-    Name: Game Controller
+  - Entity: NOT_SKINNED_model
+    guid: 045c29ad4d962ca401160a399e9b06ac6ca92dc7c95ed1705c36688546211bfb
+    Name: NOT_SKINNED_model
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-2, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
       Parent:
         guid: ""
     Components:
-      - ComponentName: GameControllerComponent
-        guid: 79287fc8cbb2c779040538f969042e6899af8ed784dbd3dda3cd9ad749e3cbb9
+      - ComponentName: ModelComponent
+        guid: 4de79910bf8de21b7c5cc739996f42ed1151a6ed145db528d55d81d196692e78
         custom_name: ""
-        current_scene:
-          guid: nullptr
-        next_scene:
-          guid: nullptr
-        dialog_manager:
-          guid: 748bff1e79bc529980f9bad5940f19ee00bd8aa672fcaddca3944fd65d480944
-      - ComponentName: PlayerComponent
-        guid: bccee0d56e5db0fb0516bf5ebca06ea9b2b3546a7189b921a3a8326297d0d46b
-        custom_name: ""
-        packages_text:
-          guid: 689ceb19201874bcc113538d1312f1f9a05408a8d229c61da9c97f6899f49130
-        flashes_text:
-          guid: 4344a872fdcb6f15177394c098cea1714138c5b630f08bdf628c9d952c423e01
-        level_text:
-          guid: 12199d4dfd10623da45a02686e2621959d48f9813a16ebbb9fc3684e13a037e4
-        clock_text:
-          guid: a65b8fd647209b2e69eeb27adf3bf3a9c5d9f78046a48dc366c1b0863ee73631
-      - ComponentName: PathComponent
-        guid: 8994e67f0136d6cc6a1b9a82cfe7f88c98b173bf279ba59752fbc83fc5c6116e
-        custom_name: ""
-        points:
-          - [0, 0]
-          - [18, 0]
-          - [18, -12]
-          - [36, -12]
-          - [54, -12]
-          - [72, -12]
-          - [84, -22.5]
-  - Entity: Player
-    guid: 9f0817f6e57c2e450a102982f1be42544c048f410fc2a708dd42fae64a5a6a48
-    Name: Player
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 83139da87b5b366493870e126a611f3edc8afda278571a1afa702a506731e35e
-    Components:
-      - ComponentName: PlayerInputComponent
-        guid: f3c68b2d429f7601071c7a724d3f4f4311794fb98fa45e06b7ae732ac2a0cbe6
-        custom_name: ""
-        player_speed: 5
-        camera_speed: 12.5
-  - Entity: CameraParent
-    guid: f9f0212f0dedc6309a8d3e4f6f00e54f7b9df7c8fe6ac5f96bf02fab8d76ee5e
-    Name: CameraParent
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 9f0817f6e57c2e450a102982f1be42544c048f410fc2a708dd42fae64a5a6a48
-    Components:
-      []
-  - Entity: Camera
-    guid: 1b2848be4d37a6e280961dddab6c2a69f387064b32d7fec4d9fb14e10c120de8
-    Name: Camera
-    TransformComponent:
-      Translation: [0, 17, 13]
-      Rotation: [-50, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: f9f0212f0dedc6309a8d3e4f6f00e54f7b9df7c8fe6ac5f96bf02fab8d76ee5e
-    Components:
-      - ComponentName: SoundListenerComponent
-        guid: c6e9e81154d9bb32385d2209cc3c6410441b01347745d0a92205347dc8d6e68e
-        custom_name: ""
-      - ComponentName: CameraComponent
-        guid: 3491770a8684c957e75e5b1fec90b5113d1151984d84d0a76b422b147a8a21f8
-        custom_name: ""
-        width: 1920
-        height: 1017
-        fov: 0.383972436
-        near_plane: 0.100000001
-        far_plane: 1000
-  - Entity: Walls
-    guid: 08adaac859ef2ee6af9f350c0752dfb03bad544120ccd745885022f2d1e70fea
-    Name: Walls
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 83139da87b5b366493870e126a611f3edc8afda278571a1afa702a506731e35e
-    Components:
-      []
-  - Entity: Wall
-    guid: 84aea7b890cbe14e95ec3948dba9fd4a52161c2dea823090d3f50c6d7c152814
-    Name: Wall
-    TransformComponent:
-      Translation: [0, 0, 4.61209011]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 08adaac859ef2ee6af9f350c0752dfb03bad544120ccd745885022f2d1e70fea
-    Components:
-      - ComponentName: Collider2DComponent
-        guid: 9e438afddb4bb9f423070bba00947d61f4060d6cd12a9b01a6c50792b0106eab
-        custom_name: ""
-        offset: [0, 0]
-        is_trigger: false
-        is_static: true
-        collider_type: 0
-        width: 18
-        height: 2
-        radius: 1
-        drag: 0.00999999978
-        velocity: [0, 0]
-  - Entity: Wall
-    guid: 8ce8e5169da3ffc6fcd4a6831746a7bbb531fa83f70c3c0d8728adab0c58d1a5
-    Name: Wall
-    TransformComponent:
-      Translation: [0, 0, -8.79222012]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 08adaac859ef2ee6af9f350c0752dfb03bad544120ccd745885022f2d1e70fea
-    Components:
-      - ComponentName: Collider2DComponent
-        guid: 481179d829278763aad664675647f2198de469ed643299ce93db5cf8215c1adf
-        custom_name: ""
-        offset: [0, 0]
-        is_trigger: false
-        is_static: true
-        collider_type: 0
-        width: 20
-        height: 2
-        radius: 1
-        drag: 0.00999999978
-        velocity: [0, 0]
-  - Entity: Wall
-    guid: 7aea537f2291f772a9e7bf21f8b6e4dbc6d15a7b4a3b00c579484dc57d768813
-    Name: Wall
-    TransformComponent:
-      Translation: [-8.5, 0, -1.00241709]
-      Rotation: [0, -77.1839981, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 08adaac859ef2ee6af9f350c0752dfb03bad544120ccd745885022f2d1e70fea
-    Components:
-      - ComponentName: Collider2DComponent
-        guid: bff68cc7afe09a9950f9f078b08fbd3c3ba7607ec05c905d6eec019d3ac49d76
-        custom_name: ""
-        offset: [0, 0]
-        is_trigger: false
-        is_static: true
-        collider_type: 0
-        width: 18
-        height: 2
-        radius: 1
-        drag: 0.00999999978
-        velocity: [0, 0]
-  - Entity: Wall
-    guid: 37bcf91df71586d97d86f3e6ea56f9ac6c364ec4492a09943ff38ebff531f8e8
-    Name: Wall
-    TransformComponent:
-      Translation: [8.5, 0, -1.00241709]
-      Rotation: [0, 77.1839981, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 08adaac859ef2ee6af9f350c0752dfb03bad544120ccd745885022f2d1e70fea
-    Components:
-      - ComponentName: Collider2DComponent
-        guid: 05f4e1fb08126ca4b9d509aa6209bd077661b070f51f144202a9b7ad7d107706
-        custom_name: ""
-        offset: [0, 0]
-        is_trigger: false
-        is_static: true
-        collider_type: 0
-        width: 18
-        height: 2
-        radius: 1
-        drag: 0.00999999978
-        velocity: [0, 0]
-  - Entity: UI_MainPanel
-    guid: 7c59c2404ab679476ab6f7cba5fd996d67d742009eb1c8d913abd91ba7d8bc9c
-    Name: UI_MainPanel
-    TransformComponent:
-      Translation: [0, 0.850000024, 0]
-      Rotation: [0, 0, 0]
-      Scale: [0.197734162, 0.153902978, 0.172426298]
-      Parent:
-        guid: 83139da87b5b366493870e126a611f3edc8afda278571a1afa702a506731e35e
-    Components:
-      - ComponentName: PanelComponent
-        guid: d2d3119dbb91c300bd4904fb7cd57eb14ff8d7acf90d50ef89820e84d7324761
-        custom_name: ""
-        background_path: ./res/textures/UI/panel.png
+        model_path: ./res/models\enemy\enemy.gltf
         material:
           Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
+            VertexPath: ./res/shaders/lit.hlsl
+            FragmentPath: ./res/shaders/lit.hlsl
             GeometryPath: ""
           Color: [1, 1, 1, 1]
-          RenderOrder: 3001
-          NeedsForward: true
-          CastsShadows: false
+          RenderOrder: 0
+          NeedsForward: false
+          CastsShadows: true
           IsBillboard: false
-      - ComponentName: ClockComponent
-        guid: a4368873ab5e72837fc970e734c95cbec4c678c1ae23b21d5b6cc0d287fd9ebb
-        custom_name: ""
-  - Entity: Glass
-    guid: b051d9bb6dcf1753b5de7ab730afb8517b07844d1d362f907f0bbe928b9f870e
-    Name: Glass
-    TransformComponent:
-      Translation: [0, 0, -2.18367338]
-      Rotation: [0, -0, 0]
-      Scale: [1, 0.899999797, 0.999999881]
-      Parent:
-        guid: 7c59c2404ab679476ab6f7cba5fd996d67d742009eb1c8d913abd91ba7d8bc9c
-    Components:
-      - ComponentName: PanelComponent
-        guid: 5c61c37765a009edcbdb8e90d95304f2461c2e86390bce6ffaf63239b1db2b4d
-        custom_name: ""
-        background_path: ./res/textures/UI/glass.png
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3001
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: Packages
-    guid: 5737590350919fed1af889f0c3e118efc055f5fe2701529b3868b65a2437ea36
-    Name: Packages
-    TransformComponent:
-      Translation: [-0.569999993, -0.610000014, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 7c59c2404ab679476ab6f7cba5fd996d67d742009eb1c8d913abd91ba7d8bc9c
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: 689ceb19201874bcc113538d1312f1f9a05408a8d229c61da9c97f6899f49130
-        custom_name: ""
-        text: 4
-        position: [0, 0]
-        font_size: 40
-        color: 4278229503
-        flags: 2053
-        font_name: KG The Last Time
-        bold: false
-        button_ref:
-          guid: nullptr
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: Flashes
-    guid: 6c065ceda5553215985be476868aff353e8f987bb40dfd6173fb207e3c318d07
-    Name: Flashes
-    TransformComponent:
-      Translation: [-0.0799999982, -0.610000014, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 7c59c2404ab679476ab6f7cba5fd996d67d742009eb1c8d913abd91ba7d8bc9c
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: 4344a872fdcb6f15177394c098cea1714138c5b630f08bdf628c9d952c423e01
-        custom_name: ""
-        text: 3
-        position: [0, 0]
-        font_size: 40
-        color: 4278229503
-        flags: 2053
-        font_name: KG The Last Time
-        bold: false
-        button_ref:
-          guid: nullptr
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: Level
-    guid: ae954d8603ceee70405c19f4a91428c67687a15d7e953100c93d326a90d91540
-    Name: Level
-    TransformComponent:
-      Translation: [0.649999976, -0.609934807, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 7c59c2404ab679476ab6f7cba5fd996d67d742009eb1c8d913abd91ba7d8bc9c
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: 12199d4dfd10623da45a02686e2621959d48f9813a16ebbb9fc3684e13a037e4
-        custom_name: ""
-        text: 6/10
-        position: [0, 0]
-        font_size: 40
-        color: 4278229503
-        flags: 2053
-        font_name: KG The Last Time
-        bold: false
-        button_ref:
-          guid: nullptr
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: Clock
-    guid: 34b0664c2389397821dd94c9bba9fdbf5851dec97e9f58bf26eed60b3ca1a9d3
-    Name: Clock
-    TransformComponent:
-      Translation: [0, 0.351999998, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 7c59c2404ab679476ab6f7cba5fd996d67d742009eb1c8d913abd91ba7d8bc9c
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: a65b8fd647209b2e69eeb27adf3bf3a9c5d9f78046a48dc366c1b0863ee73631
-        custom_name: ""
-        text: 21:38
-        position: [0, 0]
-        font_size: 40
-        color: 4278229503
-        flags: 2053
-        font_name: KG The Last Time
-        bold: true
-        button_ref:
-          guid: nullptr
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: A_DIRECTIONAL
-    guid: 20b5b682f57c835e97f62c090a9572a823623e1f26ba8ecfdbf1e6b7ca0cad21
-    Name: A_DIRECTIONAL
+  - Entity: Directional light
+    guid: a0d65733ed31f6a5011a3b29703b82c5395f2283fc5d8672bc1eb19c07c6b98c
+    Name: Directional light
     TransformComponent:
       Translation: [-5, 15, 0]
       Rotation: [-70, 0, 30]
       Scale: [1, 1, 1]
       Parent:
-        guid: 83139da87b5b366493870e126a611f3edc8afda278571a1afa702a506731e35e
+        guid: ""
     Components:
       - ComponentName: DirectionalLightComponent
-        guid: 21bca7ade2acc48ef4657f6513c02a5ceda6bb95a8997d9b703c25a7fbeb8351
+        guid: 5da9e911a965f3a3e2ebc9ded79b8c086d5ee6eb873483e872948cb34b6f37f5
         custom_name: ""
-        gamma: 1.27999997
-        exposure: 1.22000003
-        ambient: [0.104691222, 0.0543209799, 0.222222209]
-        diffuse: [0.0901234522, 0.330452949, 0.811111093]
-        specular: [0.337499976, 0.557500005, 0.75]
+        ambient: [1, 1, 1]
+        diffuse: [1, 1, 1]
+        specular: [0.43333292, 0, 1]
         m_near_plane: -25
         m_far_plane: 25
         m_blocker_search_num_samples: 16
         m_pcf_num_samples: 16
         m_light_world_size: 0.0310000461
         m_light_frustum_width: 50
-  - Entity: PromptController
-    guid: 64fcb9a88a572e04ec2c02e395f5af032cbc1f724bd19c99507071ed5a401c57
-    Name: PromptController
+  - Entity: Background
+    guid: 045c29ad4d962ca401160a399e9b06ac6ca92dc7c95ed1705c36688546211bfb
+    Name: Background
     TransformComponent:
       Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
@@ -400,230 +56,17 @@ Entities:
       Parent:
         guid: ""
     Components:
-      - ComponentName: DialoguePromptControllerComponent
-        guid: 748bff1e79bc529980f9bad5940f19ee00bd8aa672fcaddca3944fd65d480944
+      - ComponentName: ModelComponent
+        guid: 0363ff589c04f409548c252257d1f38d6c51a1f2266ba33266fa6b5b692fc4b5
         custom_name: ""
-        interp_speed: 0.100000001
-        dialogue_panel:
-          guid: 470e228fe296b3c1e38d1dacb1fae14b3f64ae0ed8776a297218ddad78b3e6e1
-        panel_parent:
-          guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-        keeper_sprite:
-          guid: 28b1ff2f3ca0d3c349282ff61e022387dcd6d6e38ada00b90a034d70e53fd79f
-        upper_text:
-          guid: 87bd7c26844953fd29a79ad15e578436636b725fd59c7d71ae280f059a62906b
-        middle_text:
-          guid: 6ddea4235c23bbc0e0c1e4236cb1dc910ba53fe84e0e322926a5f5412f41e300
-        lower_text:
-          guid: 7e46a229d18fe960e327a3b9fde858a34cf9c5e0811216dc342f541f0edec7f9
-        dialogue_objects:
-          - [false, "Ahoy, lighthouse adept! The weather is awful, so we need to light", the way for the ships. Let's guide them to the port!, "", ./res/audio/dialog_0.wav]
-          - [true, "", You wasted the cargo! I guess you need another shipment., "", ./res/audio/dialog_1.wav]
-          - [false, "", "The ship carrying food has arrived. Great, we can feed this penguin now! ", "", ./res/audio/dialog_2.wav]
-          - [true, "", "Mmm yummy, all well fed and happy!", "", ./res/audio/dialog_3.wav]
-          - [false, "", "Ah, and this is the ship with our vital fuel! ", "", ./res/audio/dialog_4.wav]
-          - [true, "", "Now go, take the package! ", "", ./res/audio/dialog_5.wav]
-          - [false, "Got the package? Great... start the generator.", "", I'll show you what you can do with some extra power., ./res/audio/dialog_6.wav]
-          - [true, "", "Remember: You can flash the lights when the generator ignites! ", "", ./res/audio/dialog_7.wav]
-          - [true, "", "You wasted your flash! I guess you need another shipment. ", "", ./res/audio/dialog_8.wav]
-          - [false, "", "Need to turn back a ship with haste? Ha-ha! The flash is your friend! ", "", ./res/audio/dialog_9.wav]
-          - [true, "", Ha! Ha-ha!, "", ./res/audio/dialog_10.wav]
-          - [false, "", You won't get far without upgrades. That's what the workshop is for!, "", ./res/audio/dialog_11.wav]
-          - [false, "", Now thats a big one. It's easier to guide them with a brighter light!, "", ./res/audio/dialog_12.wav]
-          - [true, "", Yo-Ho-ho-ho-ho!, "", ./res/audio/dialog_13.wav]
-          - [false, "Now you're on your own. Remember what I've taught you:", "Use the flash, upgrade the lighthouse, defeat the pirates.", "And most importantly, feed all the penguins before the storm comes! Ha! Ha! Ha!", ./res/audio/dialog_14.wav]
-          - [true, "Oh no, pesky pirates! ", "", Destroy their ships as fast as you can!, ./res/audio/dialog_15.wav]
-  - Entity: Parent
-    guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-    Name: Parent
-    TransformComponent:
-      Translation: [0.163605928, -1.79971945, 0]
-      Rotation: [0, 0, 0]
-      Scale: [0.699999988, 0.200000003, 0.290000021]
-      Parent:
-        guid: 64fcb9a88a572e04ec2c02e395f5af032cbc1f724bd19c99507071ed5a401c57
-    Components:
-      []
-  - Entity: Middle text
-    guid: b2e0a79c715a1e3611da0605f4316c83e5f27a68d280a9478f461a7130998ffd
-    Name: Middle text
-    TransformComponent:
-      Translation: [0, -0.180000007, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: 6ddea4235c23bbc0e0c1e4236cb1dc910ba53fe84e0e322926a5f5412f41e300
-        custom_name: ""
-        text: the way for the ships. Let's guide them to the port!
-        position: [0, 0]
-        font_size: 30
-        color: 4294241528
-        flags: 2053
-        font_name: Kurri Island PERSONAL
-        bold: false
-        button_ref:
-          guid: nullptr
+        model_path: ./res/models\ground\ground.gltf
         material:
           Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
+            VertexPath: ./res/shaders/lit.hlsl
+            FragmentPath: ./res/shaders/lit.hlsl
             GeometryPath: ""
           Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
+          RenderOrder: 0
+          NeedsForward: false
+          CastsShadows: true
           IsBillboard: false
-  - Entity: Upper text
-    guid: f15ac881728db8a4e7d688a9f2fd7634ea18aa6a8441ed91d43a24fcf5fa23b2
-    Name: Upper text
-    TransformComponent:
-      Translation: [-2.98023224e-08, 0.180000007, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: 87bd7c26844953fd29a79ad15e578436636b725fd59c7d71ae280f059a62906b
-        custom_name: ""
-        text: Ahoy, lighthouse adept! The weather is awful, so we need to light
-        position: [0, 0]
-        font_size: 30
-        color: 4294241528
-        flags: 2053
-        font_name: Kurri Island PERSONAL
-        bold: false
-        button_ref:
-          guid: nullptr
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: Lower text
-    guid: a297bae7d00fcca68c3746aa7523c5477e95615a11c0a6dd22cc5fed85dce12a
-    Name: Lower text
-    TransformComponent:
-      Translation: [-2.98023224e-08, -0.360000014, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-    Components:
-      - ComponentName: ScreenTextComponent
-        guid: 7e46a229d18fe960e327a3b9fde858a34cf9c5e0811216dc342f541f0edec7f9
-        custom_name: ""
-        text: ""
-        position: [0, 0]
-        font_size: 30
-        color: 4294241528
-        flags: 2053
-        font_name: Kurri Island PERSONAL
-        bold: false
-        button_ref:
-          guid: nullptr
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3003
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: KeeperSprite
-    guid: 28b1ff2f3ca0d3c349282ff61e022387dcd6d6e38ada00b90a034d70e53fd79f
-    Name: KeeperSprite
-    TransformComponent:
-      Translation: [0.855474651, 0.795397043, -2.54287028]
-      Rotation: [0, 0, 0]
-      Scale: [0.439999998, 2.20000005, 2.44000006]
-      Parent:
-        guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-    Components:
-      - ComponentName: PanelComponent
-        guid: f2afb9749beb60598ccb9ee98254da3f8f503e7bd94a0ace8dbf04977c7a59ac
-        custom_name: ""
-        background_path: ./res/textures/UI/keeper_sprite.png
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3001
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: Bubble
-    guid: 9b17f10216f433fa55266f8321d19ee7c61397455a2b78304dfd9cb306b64c5f
-    Name: Bubble
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [0.850000024, 0.850000024, 1]
-      Parent:
-        guid: f6fa097999bf6a5f030cd68f31fa533cb02dae2fbac7b86b15db86ef8bf539b9
-    Components:
-      - ComponentName: ButtonComponent
-        guid: 470e228fe296b3c1e38d1dacb1fae14b3f64ae0ed8776a297218ddad78b3e6e1
-        custom_name: ""
-        path_default: ./res/textures/UI/dialogue.png
-        path_hovered: ./res/textures/UI/dialogue.png
-        path_pressed: ./res/textures/UI/dialogue.png
-        top_left_corner: [545.861694, 1001]
-        top_right_corner: [1688.26172, 1001]
-        bottom_left_corner: [545.861694, 1001]
-        bottom_right_corner: [1688.26172, 1001]
-        material:
-          Shader:
-            VertexPath: ./res/shaders/ui.hlsl
-            FragmentPath: ./res/shaders/ui.hlsl
-            GeometryPath: ""
-          Color: [1, 1, 1, 1]
-          RenderOrder: 3001
-          NeedsForward: true
-          CastsShadows: false
-          IsBillboard: false
-  - Entity: FallingSnow
-    guid: 7a72a3672d93450cd48afa0b82df409f98d7c21bbd4f5d57edeb37a829b36158
-    Name: FallingSnow
-    TransformComponent:
-      Translation: [0, 2, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-      Parent:
-        guid: 83139da87b5b366493870e126a611f3edc8afda278571a1afa702a506731e35e
-    Components:
-      - ComponentName: ParticleSystemComponent
-        guid: a528e8062f85c4d9a0606c1bf6e13ee838188ead09f791a5a35297fbfe9e4e36
-        custom_name: ""
-        particle_type: 2
-        rotate_particles: true
-        spawn_instantly: false
-        sprite_path: ./res/textures/particle.png
-        min_spawn_interval: 0.100000001
-        max_spawn_interval: 0.200000003
-        start_velocity_1: [-0.100000001, 0.200000003, -0.100000001]
-        start_velocity_2: [0.100000001, 1, 0.100000001]
-        min_spawn_alpha: 0.5
-        max_spawn_alpha: 0.800000012
-        start_min_particle_size: [0.0434999987, 0.0434999987, 0.0434999987]
-        start_max_particle_size: [0.0434999987, 0.0434999987, 0.0434999987]
-        emitter_bounds: 6
-        min_spawn_count: 25
-        max_spawn_count: 30
-        start_color_1: [1, 1, 1, 0.392156869]
-        end_color_1: [1, 1, 1, 0]
-        lifetime_1: 0.5
-        lifetime_2: 0.699999988
-        m_simulate_in_world_space: true
