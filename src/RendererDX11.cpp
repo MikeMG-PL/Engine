@@ -73,6 +73,18 @@ std::shared_ptr<RendererDX11> RendererDX11::create()
 
     assert(SUCCEEDED(hr));
 
+    D3D11_BUFFER_DESC skinning_desc = {};
+    skinning_desc.Usage = D3D11_USAGE_DYNAMIC;
+    skinning_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    skinning_desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+    skinning_desc.MiscFlags = 0;
+    skinning_desc.ByteWidth = static_cast<UINT>(sizeof(SkinningBuffer) + (16 - (sizeof(SkinningBuffer) % 16)));
+    skinning_desc.StructureByteStride = 0;
+
+    hr = renderer->get_device()->CreateBuffer(&skinning_desc, nullptr, &renderer->m_constant_buffer_skinning);
+
+    assert(SUCCEEDED(hr));
+
     glfwSetWindowSizeCallback(Engine::window->get_glfw_window(), on_window_resize);
 
     D3D11_BUFFER_DESC light_buffer_desc = {};
@@ -603,17 +615,8 @@ void RendererDX11::update_object(std::shared_ptr<Drawable> const& drawable, std:
     get_device_context()->Unmap(m_constant_buffer_per_object, 0);
     get_device_context()->VSSetConstantBuffers(0, 1, &m_constant_buffer_per_object);
     get_device_context()->PSSetConstantBuffers(10, 1, &m_constant_buffer_per_object);
-
-    if (drawable->is_particle())
-    {
-        set_particle_buffer(drawable, material);
-    }
-
-    // if (drawable->is_skinned_model())
-    // {
-    //     set_skinning_buffer(drawable, bones);
-    // }
-
+    set_particle_buffer(drawable, material);
+    // set_skinning_buffer(bones);
     set_light_buffer();
     set_camera_position_buffer(drawable);
 }
@@ -780,7 +783,8 @@ void RendererDX11::set_light_buffer() const
 
 void RendererDX11::set_particle_buffer(std::shared_ptr<Drawable> const& drawable, std::shared_ptr<Material> const& material) const
 {
-    assert(drawable->is_particle());
+    if (!drawable->is_particle())
+        return;
 
     ConstantBufferParticle particle_data = {};
     particle_data.color = material->color;
@@ -796,12 +800,13 @@ void RendererDX11::set_particle_buffer(std::shared_ptr<Drawable> const& drawable
     get_instance_dx11()->get_device_context()->PSSetConstantBuffers(4, 1, &m_constant_buffer_particle);
 }
 
-void RendererDX11::set_skinning_buffer(glm::mat4 const* bones) const
+void RendererDX11::set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones) const
 {
     if (bones == nullptr)
         return;
 
-    assert(drawable->is_skinned_model());
+    if (!drawable->is_skinned_model())
+        return;
 
     SkinningBuffer skinning_data = {};
 

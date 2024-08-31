@@ -13,7 +13,7 @@ struct Rig
 
     void local_to_model(std::vector<AK::xform> const& local_pose, std::vector<AK::xform>& model_pose)
     {
-        for (u32 i = 0; i < num_bones; i++)
+        for (u32 i = 0; i < num_bones; ++i)
         {
             i32 const id_parent = parents[i];
             if (id_parent >= 0)

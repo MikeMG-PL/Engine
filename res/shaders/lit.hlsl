@@ -55,9 +55,9 @@ VS_Output vs_main(VS_Input input)
 
     pos_skinned.w = 1.0f;
 
-    output.world_pos = mul(model, pos).xyz;
+    output.world_pos = mul(model, pos_skinned).xyz;
     output.UV = input.UV;
-    output.normal = mul(input.normal, (float3x3)model);
+    output.normal = mul(norm_skinned.xyz, (float3x3)model);
     output.pixel_pos = mul(projection_view_model, pos_skinned);
     return output;
 }

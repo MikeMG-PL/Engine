@@ -108,14 +108,9 @@ float Math::ease_out_quart(float const x)
 
 xform Math::mul_xforms(xform const& a, xform const& b)
 {
-    xform result = {};
-
-    // Combine the rotations: b's rotation is applied first, then a's rotation
+    xform result;
+    result.pos = a.pos + b.pos;
     result.rot = a.rot * b.rot;
-
-    // Combine the positions: b's position is rotated by a's rotation, then a's position is added
-    result.pos = a.rot * b.pos + a.pos;
-
     return result;
 }
 

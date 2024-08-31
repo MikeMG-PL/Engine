@@ -3,6 +3,7 @@
 #include <utility>
 
 #define STB_IMAGE_IMPLEMENTATION
+#include "AnimationEngine.h"
 #include "stb_image.h"
 
 #include <miniaudio.h>
@@ -48,6 +49,7 @@ i32 Engine::initialize()
     Renderer::get_instance()->set_vsync(enable_vsync);
 
     PhysicsEngine::get_instance()->initialize();
+    AnimationEngine::get_instance()->initialize();
 
     if (auto const result = initialize_thirdparty_after_renderer(); result != 0)
         return result;
@@ -183,6 +185,7 @@ void Engine::run()
         if (m_is_game_running && !m_is_game_paused)
         {
             PhysicsEngine::get_instance()->update_physics();
+            AnimationEngine::get_instance()->update_animations();
             MainScene::get_instance()->run_frame();
         }
 

@@ -41,7 +41,7 @@ public:
 
     virtual void set_rasterizer_draw_type(RasterizerDrawType const rasterizer_draw_type) override;
     virtual void restore_default_rasterizer_draw_type() override;
-    void set_skinning_buffer(glm::mat4 const* bones) const;
+    void set_skinning_buffer(std::shared_ptr<Drawable> const& drawable, glm::mat4 const* bones) const;
 
 protected:
     virtual void update_shader(std::shared_ptr<Shader> const& shader, glm::mat4 const& projection_view,

@@ -70,3 +70,28 @@ Entities:
           NeedsForward: false
           CastsShadows: true
           IsBillboard: false
+  - Entity: SKINNED_MODEL
+    guid: c62450b2a9250ba4f365da3f97ebc671c1fceb99404babcc5709513c17754a17
+    Name: SKINNED_MODEL
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+      Parent:
+        guid: ""
+    Components:
+      - ComponentName: SkinnedModelComponent
+        guid: 5afef87a3a7f623b89e6e35760e25248b630ebb5bcb2ed0edff80d5db3de15e3
+        custom_name: ""
+        model_path: ./res/models/enemy/enemy.gltf
+        anim_path: ./res/models/enemy/enemy.gltf
+        material:
+          Shader:
+            VertexPath: ./res/shaders/lit.hlsl
+            FragmentPath: ./res/shaders/lit.hlsl
+            GeometryPath: ""
+          Color: [1, 1, 1, 1]
+          RenderOrder: 0
+          NeedsForward: false
+          CastsShadows: true
+          IsBillboard: false
