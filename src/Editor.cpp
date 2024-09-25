@@ -1106,7 +1106,7 @@ void Editor::draw_inspector(std::shared_ptr<EditorWindow> const& window)
                 entity->add_component<CONCAT_CLASS(name)>(##name::create());                                      \
         }                                                                                                         \
     }
-        ENUMERATE_COMPONENTS
+
 #undef ENUMERATE_COMPONENT
 
         ImGui::EndListBox();
